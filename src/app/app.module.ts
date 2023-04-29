@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -45,6 +44,7 @@ const routes: Routes = [
     //   { path: 'Addstudent', component: AddStudentComponent }
     // ])
     RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
