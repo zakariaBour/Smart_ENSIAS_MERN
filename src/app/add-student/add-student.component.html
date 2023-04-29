@@ -12,7 +12,7 @@
               </ul>
            </div>
         </div>
-     </div> 
+     </div>
      <div class="row">
         <div class="col-sm-12">
            <div class="card">
@@ -26,7 +26,7 @@
                           <div class="form-group">
                              <label for="firstname">First Name</label>
                              <input formControlName="firstname" type="text" id="firstname" class="form-control">
-                                <div *ngIf="myForm.controls['firstname'].touched && myForm.controls['firstname'].invalid" class="alert alert-danger">
+                                <div *ngIf="myForm.controls['firstname'].touched && myForm.controls['firstname'].invalid" class="alert alert-warning mt-1">
                                   <div *ngIf="myForm.controls['firstname'].errors?.['required']">First Name field is required.</div>
                                   <div *ngIf="myForm.controls['firstname'].errors?.['minlength']"> First Name field should be at least {{ myForm.controls['firstname'].errors?.['minlength'].requiredLength }} characters.</div>
                                 </div>
@@ -36,7 +36,7 @@
                         <div class="form-group">
                            <label for="lastname">Last Name</label>
                            <input formControlName="lastname" type="text" id="lastname" class="form-control">
-                           <div *ngIf="myForm.controls['lastname'].touched && myForm.controls['lastname'].invalid" class="alert alert-danger">
+                           <div *ngIf="myForm.controls['lastname'].touched && myForm.controls['lastname'].invalid" class="alert alert-warning mt-1">
                              <div *ngIf="myForm.controls['lastname'].errors?.['required']"> LastName field is required.</div>
                              <div *ngIf="myForm.controls['lastname'].errors?.['minlength']"> Last Name field should be at least {{ myForm.controls['lastname'].errors?.['minlength'].requiredLength }} characters.</div>
                            </div>
@@ -51,7 +51,7 @@
                               <option value="Male">Male</option>
                               <option value="Others">Others</option>
                             </select>
-                            <div *ngIf="myForm.controls['gender'].touched && myForm.controls['gender'].invalid" class="alert alert-danger">
+                            <div *ngIf="myForm.controls['gender'].touched && myForm.controls['gender'].invalid" class="alert alert-warning mt-1">
                               Gender field is required.
                             </div>
                           </div>
@@ -60,7 +60,7 @@
                         <div class="form-group">
                           <label for="dob">Date of Birth</label>
                           <input required formControlName="dob" type="date" id="dob" class="form-control">
-                          <div *ngIf="myForm.get('dob')!.invalid && (myForm.get('dob')!.dirty || myForm.get('dob')!.touched)" class="alert alert-danger">
+                          <div *ngIf="myForm.get('dob')!.invalid && (myForm.get('dob')!.dirty || myForm.get('dob')!.touched)" class="alert alert-warning mt-1">
                             <div *ngIf="myForm.get('dob')!.hasError('required')">Date of Birth field is required.</div>
                             <div *ngIf="myForm.get('dob')!.hasError('pattern')">Please enter a valid date in the format yyyy-mm-dd.</div>
                             <div *ngIf="myForm.get('dob')!.hasError('futureDate')">Please select a date in the past.</div>
@@ -71,16 +71,17 @@
                         <div class="form-group">
                           <label>Mail</label>
                           <input type="text" class="form-control" formControlName="email">
-                          <div *ngIf="myForm.get('email')!.errors?.['pattern']" class="alert alert-danger">
-                            Email must be in the format firstname_lastname@um5.ac.ma
-                          </div>
+                          <div *ngIf="myForm.get('email')!.touched && myForm.get('email')!.invalid" class="alert alert-warning mt-1">
+                            <div *ngIf="myForm.get('email')!.errors?.['required']"> Email is required.</div>
+                            <div *ngIf="myForm.get('email')!.errors?.['pattern']">Email must be in the format firstname_lastname@um5.ac.ma</div>
                         </div>
+                      </div>
                       </div>
                       <div class="col-12 col-sm-6">
                         <div class="form-group">
                           <label>Mobile Number</label>
                           <input type="text" class="form-control" formControlName="mobileNumber">
-                          <div *ngIf="myForm.get('mobileNumber')!.touched && myForm.get('mobileNumber')!.invalid" class="alert alert-danger">
+                          <div *ngIf="myForm.get('mobileNumber')!.touched && myForm.get('mobileNumber')!.invalid" class="alert alert-warning mt-1">
                             <div *ngIf="myForm.get('mobileNumber')!.errors?.['required']"> Mobile Number is required.</div>
                             <div *ngIf="myForm.get('mobileNumber')!.errors?.['pattern']"> Mobile Number should contain 10 digits.</div>
                           </div>
@@ -90,7 +91,7 @@
                         <div class="form-group">
                           <label>CodeApogee(CNE)</label>
                           <input type="text" class="form-control" formControlName="codeApogee">
-                          <div *ngIf="myForm.get('codeApogee')!.touched && myForm.get('codeApogee')!.invalid" class="alert alert-danger">
+                          <div *ngIf="myForm.get('codeApogee')!.touched && myForm.get('codeApogee')!.invalid" class="alert alert-warning mt-1">
                             <div *ngIf="myForm.get('codeApogee')!.errors?.['required']"> CNE is required.</div>
                             <div *ngIf="myForm.get('codeApogee')!.errors?.['pattern']"> CNE should contain 12 digits.</div>
                           </div>
@@ -101,9 +102,9 @@
                           <label for="passwordAccount">PasswordAccount</label>
                           <input type="text" id="passwordAccount" class="form-control" formControlName="PasswordAccount">
                           <div *ngIf="myForm.get('PasswordAccount')!.errors && myForm.get('PasswordAccount')!.touched">
-                            <div class="alert alert-danger" *ngIf="myForm.get('PasswordAccount')!.hasError('required')">PasswordAccount is required.</div>
-                            <div class="alert alert-danger" *ngIf="myForm.get('PasswordAccount')!.hasError('minlength')">PasswordAccount should be at least 8 characters.</div>
-                            <div class="alert alert-danger"*ngIf="myForm.get('PasswordAccount')!.hasError('pattern')">PasswordAccount should contain at least one uppercase character and one special character.</div>
+                            <div class="alert alert-warning mt-1" *ngIf="myForm.get('PasswordAccount')!.hasError('required')">PasswordAccount is required.</div>
+                            <div class="alert alert-warning mt-1" *ngIf="myForm.get('PasswordAccount')!.hasError('minlength')">PasswordAccount should be at least 8 characters.</div>
+                            <div class="alert alert-warning mt-1"*ngIf="myForm.get('PasswordAccount')!.hasError('pattern')">PasswordAccount should contain at least one uppercase character and one special character.</div>
                           </div>
                         </div>
                        </div>
