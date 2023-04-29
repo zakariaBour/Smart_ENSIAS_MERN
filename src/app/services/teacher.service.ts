@@ -5,10 +5,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TeacherService {
-
+  
   private apiUrl = 'http://localhost:8080/teachers';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+   }
 
   getAllTeachers() {
     return this.http.get<any[]>(this.apiUrl);

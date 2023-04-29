@@ -26,17 +26,17 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Teacher CNE</label>
-    <input type="text" name="cne"  class="form-control is-invalid"
-    [ngClass]="{'is-invalid' : cne?.invalid && cne?.touched}"
-    formControlName="cne">
-    <div class="alert alert-warning mt-1" *ngIf="cne?.invalid && cne?.touched"> 
-       <div *ngIf="cne?.errors?.['required']; else elseCne">
-        the CNE field is required
+    <label>Teacher CIN<span style="color:red">*</span></label>
+    <input type="text" name="cin"  class="form-control is-invalid"
+    [ngClass]="{'is-invalid' : cin?.invalid && cin?.touched}"
+    formControlName="cin">
+    <div class="alert alert-warning mt-1" *ngIf="cin?.invalid && cin?.touched"> 
+       <div *ngIf="cin?.errors?.['required']; else elsecin">
+        the cin field is required
        </div>
-       <ng-template #elseCne> 
-        <div *ngIf="cne?.errors?.['pattern']">
-            Please enter a valid CNE number. It should be 8 digits long and only contain uppercase letters and numbers
+       <ng-template #elsecin> 
+        <div *ngIf="cin?.errors?.['pattern']">
+            Please enter a valid cin number. It should be 8 digits long and only contain uppercase letters and numbers
         </div>
         </ng-template>
     </div>
@@ -45,7 +45,7 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label> Name</label>
+    <label> Name<span style="color:red">*</span></label>
     <input type="text" class="form-control"
     [ngClass]="{'is-invalid' : name?.invalid && name?.touched}"
     formControlName="name">
@@ -63,7 +63,7 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Gender</label>
+    <label>Gender<span style="color:red">*</span></label>
     <select class="form-control" 
     [ngClass]="{'is-invalid' : gender?.invalid && gender?.touched}"
      formControlName="gender">
@@ -81,7 +81,7 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Date of Birth</label>
+    <label>Date of Birth<span style="color:red">*</span></label>
     <input type="date" formControlName="dob" class="form-control"
     [ngClass]="{'is-invalid' : dob?.invalid && dob?.touched}"
     >
@@ -95,7 +95,7 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Mobile</label>
+    <label>Mobile<span style="color:red">*</span></label>
     <input type="text" formControlName="mobile" 
     class="form-control"
     [ngClass]="{'is-invalid' : mobile?.invalid && mobile?.touched}"
@@ -113,9 +113,10 @@
     </div>
     </div>
     </div>
+
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Joining Date</label>
+    <label>Joining Date<span style="color:red">*</span></label>
     <input type="date" formControlName="JoiningDate"
      class="form-control"
      [ngClass]="{'is-invalid' : JoiningDate?.invalid && JoiningDate?.touched}"
@@ -129,13 +130,22 @@
     </div>
     </div>
     </div>
+   
+    <div class="col-12 col-sm-6">
+        <div class="form-group">
+           <label>Teacher Image</label>
+           <input type="file" class="form-control">
+        </div>
+     </div>
+  
+    
 
     <div class="col-12">
     <h5 class="form-title"><span>Login Details</span></h5>
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Username</label>
+    <label>Username<span style="color:red">*</span></label>
     <input type="text" formControlName="userName" 
     class="form-control"
     [ngClass]="{'is-invalid' : userName?.invalid && userName?.touched}"
@@ -155,7 +165,7 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Email ID</label>
+    <label>Email ID<span style="color:red">*</span></label>
     <input type="email" formControlName="email" 
     class="form-control"
     [ngClass]="{'is-invalid' : email?.invalid && email?.touched}"
@@ -175,7 +185,7 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Password</label>
+    <label>Password<span style="color:red">*</span></label>
     <input type="password" formControlName="password"
      class="form-control"
      [ngClass]="{'is-invalid' : password?.invalid && password?.touched && password?.errors?.['required']}"
@@ -190,7 +200,7 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Repeat Password</label>
+    <label>Repeat Password<span style="color:red">*</span></label>
     <input type="password" formControlName="confirmPassword"
      class="form-control"
      [ngClass]="{'is-invalid' : confirmPassword?.invalid && confirmPassword?.touched}"
