@@ -11,13 +11,17 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-let isLogged: Boolean = true;
+import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { AddTeacherComponent } from './add-teacher/add-teacher.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'studentdetails', component: StudentListComponent },
-  { path: 'Addstudent', component: AddStudentComponent }
+  { path: 'Addstudent', component: AddStudentComponent },
+  { path:'teachers',component : TeacherListComponent},
+  { path: 'addTeacher',component : AddTeacherComponent}
 ];
 
 @NgModule({
@@ -28,7 +32,9 @@ const routes: Routes = [
     MainComponent,
     AddStudentComponent,
     StudentListComponent, LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    TeacherListComponent,
+    AddTeacherComponent
   ],
   imports: [
     BrowserModule,
