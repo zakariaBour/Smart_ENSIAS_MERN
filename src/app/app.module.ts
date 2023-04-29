@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -20,8 +19,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'studentdetails', component: StudentListComponent },
   { path: 'Addstudent', component: AddStudentComponent },
-  { path:'teachers',component : TeacherListComponent},
-  { path: 'addTeacher',component : AddTeacherComponent}
+  { path: 'teachers', component: TeacherListComponent },
+  { path: 'addTeacher', component: AddTeacherComponent }
 ];
 
 @NgModule({
@@ -39,13 +38,6 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    // RouterModule.forRoot([
-    //   { path: '', component: MainComponent },
-    //   { path: 'studentdetails', component: StudentListComponent },
-    //   { path: 'Addstudent', component: AddStudentComponent }
-    // ])
     RouterModule.forRoot(routes),
     ReactiveFormsModule
   ],
