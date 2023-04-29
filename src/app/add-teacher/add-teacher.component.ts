@@ -9,7 +9,7 @@ import { AbstractControl } from '@angular/forms';
 })
 export class AddTeacherComponent {
   addTeacherForm  : FormGroup;
-  cneRegx  : string = "^[A-Z0-9]{8}$";
+  cinRegx  : string = "^[A-Z0-9]{8}$";
   nameRegx : string = "^[A-Za-z\s]{2,50}$";
   mobileRegx : string = "^[0-9]{10}$";
   UsernameRegx : string = "^[A-Za-z\s]{3,50}$"; 
@@ -20,9 +20,9 @@ export class AddTeacherComponent {
   
   constructor(){
    this.addTeacherForm = new FormGroup({
-    cne: new FormControl('',[
+    cin: new FormControl('',[
       Validators.required,
-      Validators.pattern(this.cneRegx)
+      Validators.pattern(this.cinRegx)
     ]), 
     name: new FormControl('',[
       Validators.required,
@@ -59,6 +59,7 @@ export class AddTeacherComponent {
     ])
     
   });
+  
   }
 
   matchPassword(control: AbstractControl): {[key: string]: any} | null {
@@ -72,8 +73,8 @@ export class AddTeacherComponent {
   }
   
 
-  get cne(){
-    return this.addTeacherForm.get('cne');
+  get cin(){
+    return this.addTeacherForm.get('cin');
   }
   get name(){
     return this.addTeacherForm.get('name');

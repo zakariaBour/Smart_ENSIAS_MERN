@@ -6,144 +6,74 @@
     <div class="page-header">
     <div class="row align-items-center">
     <div class="col">
-    <h3 class="page-title">Add Teachers</h3>
+    <h3 class="page-title">Teachers</h3>
     <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="teachers.html">Teachers</a></li>
-    <li class="breadcrumb-item active">Add Teachers</li>
+    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+    <li class="breadcrumb-item active">Teachers</li>
     </ul>
+    </div>
+    <div class="col-auto text-right float-right ml-auto">
+    <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+    <a href="add-teacher.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
     </div>
     </div>
     </div>
     
     <div class="row">
     <div class="col-sm-12">
-    <div class="card">
+    <div class="card card-table">
     <div class="card-body">
-    <form>
-    <div class="row">
-    <div class="col-12">
-    <h5 class="form-title"><span>Basic Details</span></h5>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Teacher ID</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Name</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Gender</label>
-    <select class="form-control">
-    <option>Male</option>
-    <option>Female</option>
-    <option>Others</option>
-    </select>
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Date of Birth</label>
-    <input type="date" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Mobile</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Joining Date</label>
-    <input type="date" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Qualification</label>
-    <input class="form-control" type="text">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Experience</label>
-    <input class="form-control" type="text">
-    </div>
-    </div>
-    <div class="col-12">
-    <h5 class="form-title"><span>Login Details</span></h5>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Username</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Email ID</label>
-    <input type="email" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Password</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Repeat Password</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12">
-    <h5 class="form-title"><span>Address</span></h5>
-    </div>
-    <div class="col-12">
-    <div class="form-group">
-    <label>Address</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>City</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>State</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Zip Code</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Country</label>
-    <input type="text" class="form-control">
-    </div>
-    </div>
-    <div class="col-12">
-    <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-    </div>
-    </form>
+    <div class="table-responsive">
+    <table class="table table-hover table-center mb-0 datatable">
+    <thead>
+    <tr>
+    <th>CIN</th>
+    <th>Name</th>
+    <th>Class</th>
+    <th>Gender</th>
+    <th>Subject</th>
+    <th>Section</th>
+    <th>Mobile Number</th>
+    <th>Email</th>
+    <th class="text-right">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let teacher of teachers;let index = index">
+       <td>{{teacher.CIN}}</td>
+       <td>
+        <h2 class="table-avatar">
+            <a href="teacher-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
+            <a href="teacher-details.html">Minnie</a>
+        </h2>
+        {{teacher.Name}}
+       </td>
+       <td>{{teacher.Class}}</td>
+       <td>{{teacher.Gender}}</td>
+       <td>{{teacher.Subject}}</td>
+       <td>{{teacher.Section}}</td>
+       <td>{{teacher['Mobile Number']}}</td>
+       <td>{{teacher.Email}}</td> 
+       <td class="text-right">
+        <div class="actions">
+        <a href="edit-teacher.html" class="btn btn-sm bg-success-light mr-2">
+        <i class="fas fa-pen"></i>
+        </a>
+        <a href="#" class="btn btn-sm bg-danger-light">
+        <i class="fas fa-trash"></i>
+        </a>
+        </div>
+        </td>
+    </tr>
+   
+   
+    </tbody>
+    </table>
     </div>
     </div>
     </div>
     </div>
     </div>
+    </div>
+
     </div>
