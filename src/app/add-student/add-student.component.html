@@ -17,74 +17,104 @@
         <div class="col-sm-12">
            <div class="card">
               <div class="card-body">
-                 <form>
+                 <form [formGroup]="myForm" #formElement>
                     <div class="row">
                        <div class="col-12">
                           <h5 class="form-title"><span>Student Information</span></h5>
                        </div>
                        <div class="col-12 col-sm-6">
                           <div class="form-group">
-                             <label>First Name</label>
-                             <input type="text" class="form-control">
+                             <label for="firstname">First Name</label>
+                             <input formControlName="firstname" type="text" id="firstname" class="form-control">
+                                <div *ngIf="myForm.controls['firstname'].touched && myForm.controls['firstname'].invalid" class="alert alert-danger">
+                                  <div *ngIf="myForm.controls['firstname'].errors?.['required']">First Name field is required.</div>
+                                  <div *ngIf="myForm.controls['firstname'].errors?.['minlength']"> First Name field should be at least {{ myForm.controls['firstname'].errors?.['minlength'].requiredLength }} characters.</div>
+                                </div>
+                            </div>
+                       </div>
+                       <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label for="lastname">Last Name</label>
+                           <input formControlName="lastname" type="text" id="lastname" class="form-control">
+                           <div *ngIf="myForm.controls['lastname'].touched && myForm.controls['lastname'].invalid" class="alert alert-danger">
+                             <div *ngIf="myForm.controls['lastname'].errors?.['required']"> LastName field is required.</div>
+                             <div *ngIf="myForm.controls['lastname'].errors?.['minlength']"> Last Name field should be at least {{ myForm.controls['lastname'].errors?.['minlength'].requiredLength }} characters.</div>
+                           </div>
+                          </div>
+                     </div>
+                       <div class="col-12 col-sm-6">
+                          <div class="form-group">
+                             <label for="gender">Gender</label>
+                             <select formControlName="gender" id="gender" class="form-control">
+                              <option value="">Select a gender</option>
+                              <option value="Female">Female</option>
+                              <option value="Male">Male</option>
+                              <option value="Others">Others</option>
+                            </select>
+                            <div *ngIf="myForm.controls['gender'].touched && myForm.controls['gender'].invalid" class="alert alert-danger">
+                              Gender field is required.
+                            </div>
                           </div>
                        </div>
                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                             <label>Last Name</label>
-                             <input type="text" class="form-control">
+                        <div class="form-group">
+                          <label for="dob">Date of Birth</label>
+                          <input required formControlName="dob" type="date" id="dob" class="form-control">
+                          <div *ngIf="myForm.get('dob')!.invalid && (myForm.get('dob')!.dirty || myForm.get('dob')!.touched)" class="alert alert-danger">
+                            <div *ngIf="myForm.get('dob')!.hasError('required')">Date of Birth field is required.</div>
+                            <div *ngIf="myForm.get('dob')!.hasError('pattern')">Please enter a valid date in the format yyyy-mm-dd.</div>
+                            <div *ngIf="myForm.get('dob')!.hasError('futureDate')">Please select a date in the past.</div>
                           </div>
-                       </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Mail</label>
+                          <input type="text" class="form-control" formControlName="email">
+                          <div *ngIf="myForm.get('email')!.errors?.['pattern']" class="alert alert-danger">
+                            Email must be in the format firstname_lastname@um5.ac.ma
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Mobile Number</label>
+                          <input type="text" class="form-control" formControlName="mobileNumber">
+                          <div *ngIf="myForm.get('mobileNumber')!.touched && myForm.get('mobileNumber')!.invalid" class="alert alert-danger">
+                            <div *ngIf="myForm.get('mobileNumber')!.errors?.['required']"> Mobile Number is required.</div>
+                            <div *ngIf="myForm.get('mobileNumber')!.errors?.['pattern']"> Mobile Number should contain 10 digits.</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>CodeApogee(CNE)</label>
+                          <input type="text" class="form-control" formControlName="codeApogee">
+                          <div *ngIf="myForm.get('codeApogee')!.touched && myForm.get('codeApogee')!.invalid" class="alert alert-danger">
+                            <div *ngIf="myForm.get('codeApogee')!.errors?.['required']"> CNE is required.</div>
+                            <div *ngIf="myForm.get('codeApogee')!.errors?.['pattern']"> CNE should contain 12 digits.</div>
+                          </div>
+                        </div>
+                      </div>
                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                             <label>Gender</label>
-                             <select class="form-control">
-                                <option>Select Gender</option>
-                                <option>Female</option>
-                                <option>Male</option>
-                                <option>Others</option>
-                             </select>
+                        <div class="form-group">
+                          <label for="passwordAccount">PasswordAccount</label>
+                          <input type="text" id="passwordAccount" class="form-control" formControlName="PasswordAccount">
+                          <div *ngIf="myForm.get('PasswordAccount')!.errors && myForm.get('PasswordAccount')!.touched">
+                            <div class="alert alert-danger" *ngIf="myForm.get('PasswordAccount')!.hasError('required')">PasswordAccount is required.</div>
+                            <div class="alert alert-danger" *ngIf="myForm.get('PasswordAccount')!.hasError('minlength')">PasswordAccount should be at least 8 characters.</div>
+                            <div class="alert alert-danger"*ngIf="myForm.get('PasswordAccount')!.hasError('pattern')">PasswordAccount should contain at least one uppercase character and one special character.</div>
                           </div>
-                       </div>
-                       <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                             <label>Date of Birth</label>
-                             <div>
-                                <input type="date" class="form-control">
-                             </div>
-                          </div>
-                       </div>
-                       <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                             <label>Mail</label>
-                             <input type="text" class="form-control">
-                          </div>
-                       </div>
-                       <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                             <label>Mobile Number</label>
-                             <input type="text" class="form-control">
-                          </div>
-                       </div>
-                       <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                             <label>CodeApogee(CNE)</label>
-                             <input type="text" class="form-control">
-                          </div>
-                       </div>
-                       <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                             <label>PasswordAccount</label>
-                             <input type="text" class="form-control">
-                          </div>
+                        </div>
                        </div>
                        <div class="col-12 col-sm-6">
                           <div class="form-group">
                              <label>Student Image</label>
-                             <input type="file" class="form-control">
+                             <input type="file" required class="form-control">
                           </div>
                        </div>
                        <div class="col-12">
-                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <button type="submit" class="btn btn-primary"  [disabled]="myForm.invalid" (click)="onSubmit(myForm)">Submit</button>
                        </div>
                     </div>
                  </form>
