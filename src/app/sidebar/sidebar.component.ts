@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,10 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 
-export class SidebarComponent {
-  
+export class SidebarComponent implements OnInit{
+  showOptions: boolean[] = new Array(100).fill(false);
    constructor(){
     
    }
+   change(i : any){
+    this.showOptions[i] = !this.showOptions[i];
+   }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 }
 

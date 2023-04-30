@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'Addstudent', component: AddStudentComponent },
   { path:'teachers',component : TeacherListComponent},
   { path: 'addTeacher',component : AddTeacherComponent},
-  { path : 'editStudent/:cne',component : EditStudentComponent}
+  { path :'editStudent/:cne',component : EditStudentComponent}
 ];
 
 @NgModule({
