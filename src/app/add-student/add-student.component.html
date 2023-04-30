@@ -17,7 +17,7 @@
         <div class="col-sm-12">
            <div class="card">
               <div class="card-body">
-                 <form [formGroup]="addStudentForm" #formElement>
+                 <form [formGroup]="addStudentForm" (submit)="onSubmit()" >
                     <div class="row">
                        <div class="col-12">
                           <h5 class="form-title"><span>Student Information</span></h5>
@@ -150,8 +150,8 @@
                           </div>
                           <div class="col-12 col-sm-6">
                             <div class="form-group">
-                            <label>passwordAccount<span style="color:red">*</span></label>
-                            <input type="text" formControlName="PasswordAccount"
+                            <label>password <span style="color:red">*</span></label>
+                            <input type="password" formControlName="PasswordAccount"
                             class="form-control"
                             [ngClass]="{'is-invalid' : PasswordAccount?.invalid && PasswordAccount?.touched}"
                             >

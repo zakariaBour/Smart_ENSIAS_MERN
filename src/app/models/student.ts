@@ -1,14 +1,16 @@
 export interface Student {
 
     id?: number,
-    CNE: string,
-    firstName: string,
-    lastName: string,
+    cne: string,
+    first_name: string,
+    last_name: string,
     phone: string,
-    mail: string,
+    email: string,
     gender: string,
     imageUrl?: string,
     dob?: Date,
     password: string
 }
+
+
 

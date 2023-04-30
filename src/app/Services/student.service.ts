@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
+import { Student } from '../models/student';
 const httpOptions = {
   headers: new HttpHeaders(
     {
@@ -24,5 +25,10 @@ export class StudentService {
   }
   deleteStudent(cne:string){
     return this.http.delete(this.apiUrl+this.endPointStudents+"/"+cne);
-
+  }
+  addStudent(student : Student) : Observable<Student>{
+    let addStudentUrl = this.apiUrl + this.endPointStudents+"/enrollStudent";
+    return this.http.post<Student>(addStudentUrl, student,httpOptions);
+  }
+  
 }

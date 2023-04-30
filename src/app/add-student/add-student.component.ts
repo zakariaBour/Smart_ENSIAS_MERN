@@ -1,30 +1,35 @@
-import { StudentService } from './../Services/student.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../models/student';
+import { StudentService } from '../services/student.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.css']
+  styleUrls: ['./add-student.component.css'],
+  providers : [StudentService]
 })
 export class AddStudentComponent {
   formData: any;
   myStudent: Student = {
-    CNE: '',
-    firstName: '',
-    lastName: '',
+    cne: '',
+    first_name: '',
+    last_name: '',
     phone: '',
-    mail: '',
+    email: '',
     gender: '',
     // dob: ,
     password: ''
   }
+  
+
+ 
   students: Student[] = [];
   addStudentForm: FormGroup;
 
   // constructor(private formBuilder: FormBuilder, private studentService: StudentService) { }
 
-  constructor() {
+  constructor(private studentService : StudentService,private toastr: ToastrService) {
     this.addStudentForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.required,
@@ -50,11 +55,11 @@ export class AddStudentComponent {
       ]),
       PasswordAccount: new FormControl('', [
         Validators.required,
-        Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*\W).+$/)
+        Validators.minLength(8)
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^\w+_\w+@um5\.ac\.ma$/)
+        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
       ])
     });
   }
@@ -86,46 +91,58 @@ export class AddStudentComponent {
   get email() {
     return this.addStudentForm.get('email');
   }
-
-
-
+  addStudent(student : Student){
+      this.studentService.addStudent(student).subscribe(students => {
+        this.toastr.success('Student added successfully');
+      },error => {
+        this.toastr.error('error');
+        console.log(error);
+      });
+  }
   onSubmit(): any {
     this.formData = this.addStudentForm.value;
+    let student : Student;
+    student = {
+      cne : this.formData?.codeApogee,
+      first_name : this.formData?.firstname,
+      last_name : this.formData?.lastname,
+      phone : this.formData?.mobileNumber,
+      email : this.formData?.email,
+      gender : this.formData?.gender,
+      password : this.formData?.PasswordAccount
+    }
+    //addStudent();
     console.log(this.formData);
+    console.log(student);
+    this.addStudent(student);
   }
-  // dobValidator(control: FormControl) {
-  //   const selectedDate = new Date(control.value);
-  //   const today = new Date();
-  //   if (selectedDate > today) {
-  //     return { futureDate: true };
-  //   }
-  //   return null;
-  // }
-  // persistStudent() {
-  //   this.myStudent.firstName = this.firstname?.value;
 
-  //   this.studentService.addStudent(this.myStudent).subscribe(
-  //     (student) => {
-  //       this.students = [student, ...this.students];
-  //       this.resetStudents();
-  //       console.log('POST request successful');
-  //     },
-  //     (error) => {
-  //       console.log('POST request failed:', error);
-  //     }
-  //   );
-  // }
+  /*
+   PasswordAccount
+: 
+"dkkdkddkd"
+codeApogee
+: 
+"kkdkdkd"
+dob
+: 
+"2023-04-06"
+email
+: 
+"abderazaknfissi34@gmail.com"
+firstname
+: 
+"abderrazzak"
+gender
+: 
+"Male"
+lastname
+: 
+"nfissi"
+mobileNumber
+: 
+"0611461930"
 
-  // resetStudents() {
-  //   this.myStudent = {
-  //     CNE: '',
-  //     firstName: '',
-  //     lastName: '',
-  //     phone: '',
-  //     mail: '',
-  //     gender: '',
-  //     // dob: new Date,
-  //     password: ''
-  //   }
-  // }
+  */
+  
 }
