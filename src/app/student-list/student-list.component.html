@@ -27,10 +27,8 @@
       <tr>
       <th>CIN</th>
       <th>Name</th>
-      <th>Class</th>
       <th>Gender</th>
-      <th>Subject</th>
-      <th>Section</th>
+      <th>Class</th>
       <th>Mobile Number</th>
       <th>Email</th>
       <th class="text-right">Action</th>
@@ -38,33 +36,29 @@
       </thead>
       <tbody>
       <tr *ngFor="let student of students;let index = index">
-         <td>{{student.CNE}}</td>
+         <td>{{student.cne}}</td>
          <td>
           <h2 class="table-avatar">
               <a href="student-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
-              <a href="student-details.html"> {{student.Name}}</a>
+              <a href="student-details.html"> {{student.first_name}} {{ student.last_name }}</a>
           </h2>
 
          </td>
-         <td>{{student.Class}}</td>
-         <td>{{student.Gender}}</td>
-         <td>{{student.Subject}}</td>
-         <td>{{student.Section}}</td>
-         <td>{{student['Mobile Number']}}</td>
-         <td>{{student.Email}}</td>
+         <td>{{student.genre}}</td>
+         <td>0</td>
+         <td>{{student.phone}}</td>
+         <td>{{student.email}}</td>         
          <td class="text-right">
           <div class="actions">
           <a href="edit-student.html" class="btn btn-sm bg-success-light mr-2">
           <i class="fas fa-pen"></i>
           </a>
-          <a href="#" class="btn btn-sm bg-danger-light">
+          <a (click)="deleteStudent(student.cne)" class="btn btn-sm bg-danger-light">
           <i class="fas fa-trash"></i>
           </a>
           </div>
           </td>
       </tr>
-
-
       </tbody>
       </table>
       </div>

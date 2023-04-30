@@ -13,14 +13,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { StudentService } from './services/student.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'studentdetails', component: StudentListComponent },
   { path: 'Addstudent', component: AddStudentComponent },
-  { path: 'teachers', component: TeacherListComponent },
-  { path: 'addTeacher', component: AddTeacherComponent }
+  { path:'teachers',component : TeacherListComponent},
+  { path: 'addTeacher',component : AddTeacherComponent}
 ];
 
 @NgModule({
@@ -33,15 +37,21 @@ const routes: Routes = [
     StudentListComponent, LoginComponent,
     DashboardComponent,
     TeacherListComponent,
-    AddTeacherComponent
+    AddTeacherComponent,
+    
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    StudentService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
