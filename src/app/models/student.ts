@@ -1,4 +1,5 @@
 export interface Student {
+
     id?: number,
     CNE: string,
     firstName: string,
@@ -10,3 +11,4 @@ export interface Student {
     dob?: Date,
     password: string
 }
+
