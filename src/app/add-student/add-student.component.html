@@ -17,97 +17,157 @@
         <div class="col-sm-12">
            <div class="card">
               <div class="card-body">
-                 <form [formGroup]="myForm" #formElement>
+                 <form [formGroup]="addStudentForm" #formElement>
                     <div class="row">
                        <div class="col-12">
                           <h5 class="form-title"><span>Student Information</span></h5>
                        </div>
                        <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>First Name<span style="color:red">*</span></label>
+                          <input type="text" name="firstname"  class="form-control is-invalid"
+                          [ngClass]="{'is-invalid' : firstname?.invalid && firstname?.touched}"
+                          formControlName="firstname">
+                          <div class="alert alert-warning mt-1" *ngIf="firstname?.invalid && firstname?.touched">
+                             <div *ngIf="firstname?.errors?.['required']; else elsefirstname">
+                              the firstname field is required
+                             </div>
+                             <ng-template #elsefirstname>
+                              <div *ngIf="firstname?.errors?.['minlength']">
+                                   It should be at least 8 charcters
+                              </div>
+                              </ng-template>
+                          </div>
+                       </div>
+                       </div>
+                       <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Last Name<span style="color:red">*</span></label>
+                          <input type="text" name="lastname"  class="form-control is-invalid"
+                          [ngClass]="{'is-invalid' : lastname?.invalid && lastname?.touched}"
+                          formControlName="lastname">
+                          <div class="alert alert-warning mt-1" *ngIf="lastname?.invalid && lastname?.touched">
+                             <div *ngIf="lastname?.errors?.['required']; else elselastname">
+                              the lastname field is required
+                             </div>
+                             <ng-template #elselastname>
+                              <div *ngIf="lastname?.errors?.['minlength']">
+                                   It should be at least 8 charcters
+                              </div>
+                              </ng-template>
+                          </div>
+                       </div>
+                       </div>
+                       <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                        <label>Gender<span style="color:red">*</span></label>
+                        <select class="form-control"
+                        [ngClass]="{'is-invalid' : gender?.invalid && gender?.touched}"
+                         formControlName="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                        </select>
+                        <div class="alert alert-warning mt-1" *ngIf="gender?.invalid && gender?.touched">
+                            <div *ngIf="gender?.errors?.['required']">
+                                the gender field is required
+                            </div>
+
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
                           <div class="form-group">
-                             <label for="firstname">First Name</label>
-                             <input formControlName="firstname" type="text" id="firstname" class="form-control">
-                                <div *ngIf="myForm.controls['firstname'].touched && myForm.controls['firstname'].invalid" class="alert alert-warning mt-1">
-                                  <div *ngIf="myForm.controls['firstname'].errors?.['required']">First Name field is required.</div>
-                                  <div *ngIf="myForm.controls['firstname'].errors?.['minlength']"> First Name field should be at least {{ myForm.controls['firstname'].errors?.['minlength'].requiredLength }} characters.</div>
+                          <label>Date of Birth<span style="color:red">*</span></label>
+                          <input type="date" formControlName="dob" class="form-control"
+                          [ngClass]="{'is-invalid' : dob?.invalid && dob?.touched}"
+                          >
+                          <div class="alert alert-warning mt-1" *ngIf="dob?.invalid && dob?.touched">
+
+                              <div *ngIf="dob?.errors?.['required']">
+                                  the date of birth field is required !
+                              </div>
+                          </div>
+                          </div>
+                          </div>
+
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                        <label>Email<span style="color:red">*</span></label>
+                        <input type="text" formControlName="email"
+                        class="form-control"
+                        [ngClass]="{'is-invalid' : email?.invalid && email?.touched}"
+                        >
+                        <div class="alert alert-warning mt-1" *ngIf="email?.invalid && email?.touched">
+
+                            <div *ngIf="email?.errors?.['required']; else elseemail">
+                                the email field is required !
+                               </div>
+                               <ng-template #elseemail>
+                                <div *ngIf="email?.errors?.['pattern']">
+                                    Please enter a valid email
                                 </div>
-                            </div>
-                       </div>
-                       <div class="col-12 col-sm-6">
+                            </ng-template>
+                        </div>
+                        </div>
+                        </div>
+
+                      <div class="col-12 col-sm-6">
                         <div class="form-group">
-                           <label for="lastname">Last Name</label>
-                           <input formControlName="lastname" type="text" id="lastname" class="form-control">
-                           <div *ngIf="myForm.controls['lastname'].touched && myForm.controls['lastname'].invalid" class="alert alert-warning mt-1">
-                             <div *ngIf="myForm.controls['lastname'].errors?.['required']"> LastName field is required.</div>
-                             <div *ngIf="myForm.controls['lastname'].errors?.['minlength']"> Last Name field should be at least {{ myForm.controls['lastname'].errors?.['minlength'].requiredLength }} characters.</div>
-                           </div>
-                          </div>
-                     </div>
-                       <div class="col-12 col-sm-6">
+                        <label>MobileNumber<span style="color:red">*</span></label>
+                        <input type="text" formControlName="mobileNumber"
+                        class="form-control"
+                        [ngClass]="{'is-invalid' : mobileNumber?.invalid && mobileNumber?.touched}"
+                        >
+                        <div class="alert alert-warning mt-1" *ngIf="mobileNumber?.invalid && mobileNumber?.touched">
+
+                            <div *ngIf="mobileNumber?.errors?.['required']; else elseMobileNumber">
+                                the mobileNumber field is required !
+                               </div>
+                               <ng-template #elseMobileNumber>
+                                <div *ngIf="mobileNumber?.errors?.['pattern']">
+                                    Please enter a valid mobileNumber number
+                                </div>
+                            </ng-template>
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6">
                           <div class="form-group">
-                             <label for="gender">Gender</label>
-                             <select formControlName="gender" id="gender" class="form-control">
-                              <option value="">Select a gender</option>
-                              <option value="Female">Female</option>
-                              <option value="Male">Male</option>
-                              <option value="Others">Others</option>
-                            </select>
-                            <div *ngIf="myForm.controls['gender'].touched && myForm.controls['gender'].invalid" class="alert alert-warning mt-1">
-                              Gender field is required.
+                          <label>CNE<span style="color:red">*</span></label>
+                          <input type="text" formControlName="codeApogee"
+                          class="form-control"
+                          [ngClass]="{'is-invalid' : codeApogee?.invalid && codeApogee?.touched}"
+                          >
+                          <div class="alert alert-warning mt-1" *ngIf="codeApogee?.invalid && codeApogee?.touched">
+
+                              <div *ngIf="codeApogee?.errors?.['required']">
+                                  the CNE field is required !
+                                 </div>
+                          </div>
+                          </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                            <label>passwordAccount<span style="color:red">*</span></label>
+                            <input type="text" formControlName="PasswordAccount"
+                            class="form-control"
+                            [ngClass]="{'is-invalid' : PasswordAccount?.invalid && PasswordAccount?.touched}"
+                            >
+                            <div class="alert alert-warning mt-1" *ngIf="PasswordAccount?.invalid && PasswordAccount?.touched">
+
+                                <div *ngIf="PasswordAccount?.errors?.['required']; else elsePasswordAccount">
+                                    the PasswordAccount field is required !
+                                   </div>
+                                   <ng-template #elsePasswordAccount>
+                                    <div *ngIf="PasswordAccount?.errors?.['pattern']">
+                                        Please enter a valid PasswordAccount
+                                    </div>
+                                </ng-template>
                             </div>
-                          </div>
-                       </div>
-                       <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label for="dob">Date of Birth</label>
-                          <input required formControlName="dob" type="date" id="dob" class="form-control">
-                          <div *ngIf="myForm.get('dob')!.invalid && (myForm.get('dob')!.dirty || myForm.get('dob')!.touched)" class="alert alert-warning mt-1">
-                            <div *ngIf="myForm.get('dob')!.hasError('required')">Date of Birth field is required.</div>
-                            <div *ngIf="myForm.get('dob')!.hasError('pattern')">Please enter a valid date in the format yyyy-mm-dd.</div>
-                            <div *ngIf="myForm.get('dob')!.hasError('futureDate')">Please select a date in the past.</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label>Mail</label>
-                          <input type="text" class="form-control" formControlName="email">
-                          <div *ngIf="myForm.get('email')!.touched && myForm.get('email')!.invalid" class="alert alert-warning mt-1">
-                            <div *ngIf="myForm.get('email')!.errors?.['required']"> Email is required.</div>
-                            <div *ngIf="myForm.get('email')!.errors?.['pattern']">Email must be in the format firstname_lastname@um5.ac.ma</div>
-                        </div>
-                      </div>
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label>Mobile Number</label>
-                          <input type="text" class="form-control" formControlName="mobileNumber">
-                          <div *ngIf="myForm.get('mobileNumber')!.touched && myForm.get('mobileNumber')!.invalid" class="alert alert-warning mt-1">
-                            <div *ngIf="myForm.get('mobileNumber')!.errors?.['required']"> Mobile Number is required.</div>
-                            <div *ngIf="myForm.get('mobileNumber')!.errors?.['pattern']"> Mobile Number should contain 10 digits.</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label>CodeApogee(CNE)</label>
-                          <input type="text" class="form-control" formControlName="codeApogee">
-                          <div *ngIf="myForm.get('codeApogee')!.touched && myForm.get('codeApogee')!.invalid" class="alert alert-warning mt-1">
-                            <div *ngIf="myForm.get('codeApogee')!.errors?.['required']"> CNE is required.</div>
-                            <div *ngIf="myForm.get('codeApogee')!.errors?.['pattern']"> CNE should contain 12 digits.</div>
-                          </div>
-                        </div>
-                      </div>
-                       <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label for="passwordAccount">PasswordAccount</label>
-                          <input type="text" id="passwordAccount" class="form-control" formControlName="PasswordAccount">
-                          <div *ngIf="myForm.get('PasswordAccount')!.errors && myForm.get('PasswordAccount')!.touched">
-                            <div class="alert alert-warning mt-1" *ngIf="myForm.get('PasswordAccount')!.hasError('required')">PasswordAccount is required.</div>
-                            <div class="alert alert-warning mt-1" *ngIf="myForm.get('PasswordAccount')!.hasError('minlength')">PasswordAccount should be at least 8 characters.</div>
-                            <div class="alert alert-warning mt-1"*ngIf="myForm.get('PasswordAccount')!.hasError('pattern')">PasswordAccount should contain at least one uppercase character and one special character.</div>
-                          </div>
-                        </div>
-                       </div>
+                            </div>
+                            </div>
                        <div class="col-12 col-sm-6">
                           <div class="form-group">
                              <label>Student Image</label>
@@ -115,7 +175,7 @@
                           </div>
                        </div>
                        <div class="col-12">
-                          <button type="submit" class="btn btn-primary"  [disabled]="myForm.invalid" (click)="onSubmit(myForm)">Submit</button>
+                          <button type="submit" class="btn btn-primary"  [disabled]="addStudentForm.invalid">Submit</button>
                        </div>
                     </div>
                  </form>

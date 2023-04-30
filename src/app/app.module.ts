@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -39,7 +41,8 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
