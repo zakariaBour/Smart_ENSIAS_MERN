@@ -30,5 +30,7 @@ export class StudentService {
     let addStudentUrl = this.apiUrl + this.endPointStudents+"/enrollStudent";
     return this.http.post<Student>(addStudentUrl, student,httpOptions);
   }
-  
+  findStudentByCne(cne : string){
+   return this.http.get(this.apiUrl+this.endPointStudents+"/"+cne,httpOptions);
+  }
 }
