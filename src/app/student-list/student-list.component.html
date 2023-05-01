@@ -12,8 +12,8 @@
               </ul>
            </div>
            <div class="col-auto text-right float-right ml-auto">
-              <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-              <a href="add-student.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+              <a (click)="downloadStudents()" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+              <a routerLink="/Addstudent" class="btn btn-primary"><i class="fas fa-plus"></i></a>
            </div>
         </div>
      </div>
@@ -50,7 +50,7 @@
          <td>{{student.email}}</td>         
          <td class="text-right">
           <div class="actions">
-          <a href="edit-student.html" class="btn btn-sm bg-success-light mr-2">
+          <a [routerLink]="['/editStudent',student.cne]"  class="btn btn-sm bg-success-light mr-2">
           <i class="fas fa-pen"></i>
           </a>
           <a (click)="deleteStudent(student.cne)" class="btn btn-sm bg-danger-light">
@@ -67,5 +67,5 @@
       </div>
       </div>
   </div>
-  <footer><p>Copyright © 2020 Dreamguys.</p></footer>
+  <footer><p>Copyright © 2023 SMART ENSIAS.</p></footer>
 </div>

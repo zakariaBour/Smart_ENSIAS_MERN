@@ -1,15 +1,19 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 @Component({
-  selector: 'app-add-student',
-  templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.css'],
-  providers : [StudentService]
+  selector: 'app-edit-student',
+  templateUrl: './edit-student.component.html',
+  styleUrls: ['./edit-student.component.css']
 })
-export class AddStudentComponent {
+
+export class EditStudentComponent implements OnInit{
   formData: any;
   myStudent: Student = {
     cne: '',
@@ -21,15 +25,16 @@ export class AddStudentComponent {
     // dob: ,
     password: ''
   }
-  
 
- 
   students: Student[] = [];
   addStudentForm: FormGroup;
 
   // constructor(private formBuilder: FormBuilder, private studentService: StudentService) { }
 
-  constructor(private studentService : StudentService,private toastr: ToastrService) {
+  constructor(private studentService : StudentService,
+    private toastr: ToastrService, private route: ActivatedRoute
+    ,private fb: FormBuilder) {
+      
     this.addStudentForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.required,
@@ -62,7 +67,13 @@ export class AddStudentComponent {
         Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
       ])
     });
+    this.getStudentByCne();
   }
+  currentStudent : any;
+  current_cne: any;
+  ngOnInit(): void { 
+  }
+ 
   get firstname() {
     return this.addStudentForm.get('firstname');
   }
@@ -91,6 +102,63 @@ export class AddStudentComponent {
   get email() {
     return this.addStudentForm.get('email');
   }
+  getStudentByCne(){
+    this.current_cne = this.route.snapshot.paramMap.get('cne');
+    this.studentService.findStudentByCne(this.current_cne).subscribe(student=>{
+      this.currentStudent = student;
+      console.log(this.currentStudent);
+      /*
+        attendances
+: 
+[]
+cne
+: 
+"110200202"
+date_of_birth
+: 
+null
+email
+: 
+"roubale123@gmail.com"
+first_name
+: 
+"Roubale"
+genre
+: 
+"HOMME"
+id
+: 
+1
+image_url
+: 
+null
+last_name
+: 
+"roubale"
+password
+: 
+"10000"
+phone
+: 
+"+234556771"
+username
+: 
+"roubale"
+
+      */
+
+      this.addStudentForm = this.fb.group({
+        firstname: this.currentStudent.first_name,
+        lastname : this.currentStudent.last_name,
+        gender : this.currentStudent.genre,
+        dob : this.currentStudent.date_of_birth,
+        mobileNumber : this.currentStudent.phone,
+        codeApogee : this.currentStudent.cne,
+        PasswordAccount : this.currentStudent.password,
+        email : this.currentStudent.email
+      });
+    });
+  }
   addStudent(student : Student){
       this.studentService.addStudent(student).subscribe(students => {
         this.toastr.success('Student added successfully');
@@ -116,33 +184,6 @@ export class AddStudentComponent {
     console.log(student);
     this.addStudent(student);
   }
-
-  /*
-   PasswordAccount
-: 
-"dkkdkddkd"
-codeApogee
-: 
-"kkdkdkd"
-dob
-: 
-"2023-04-06"
-email
-: 
-"abderazaknfissi34@gmail.com"
-firstname
-: 
-"abderrazzak"
-gender
-: 
-"Male"
-lastname
-: 
-"nfissi"
-mobileNumber
-: 
-"0611461930"
-
-  */
   
 }
+

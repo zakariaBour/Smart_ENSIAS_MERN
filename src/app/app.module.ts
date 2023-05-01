@@ -14,9 +14,12 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { StudentService } from './services/student.service';
+
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StudentService } from './services/student.service';
+import { EditStudentComponent } from './edit-student/edit-student.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -24,7 +27,8 @@ const routes: Routes = [
   { path: 'studentdetails', component: StudentListComponent },
   { path: 'Addstudent', component: AddStudentComponent },
   { path:'teachers',component : TeacherListComponent},
-  { path: 'addTeacher',component : AddTeacherComponent}
+  { path: 'addTeacher',component : AddTeacherComponent},
+  { path :'editStudent/:cne',component : EditStudentComponent}
 ];
 
 @NgModule({
@@ -38,6 +42,7 @@ const routes: Routes = [
     DashboardComponent,
     TeacherListComponent,
     AddTeacherComponent,
+    EditStudentComponent,
     
   ],
   imports: [
