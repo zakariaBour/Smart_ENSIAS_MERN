@@ -23,6 +23,7 @@ import { StudentAttendanceComponent } from './student-attendance/student-attenda
 import { OverviewChartComponent } from './overview-chart/overview-chart.component';
 import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
 import { SearchFlterPipe } from './search-flter.pipe';
+import { TeacherAttendanceComponent } from './teacher-attendance/teacher-attendance.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -36,7 +37,8 @@ const routes: Routes = [
   { path : 'attendance', component : StudentAttendanceComponent},
   { path: 'teachers', component: TeacherListComponent },
   { path: 'addTeacher', component: AddTeacherComponent },
-  { path: 'editStudent/:cne', component: EditStudentComponent }
+  { path: 'editStudent/:cne', component: EditStudentComponent },
+  { path: 'attendance',component : StudentAttendanceComponent}
 ];
 
 @NgModule({
@@ -55,6 +57,7 @@ const routes: Routes = [
     OverviewChartComponent,
     ClassAttendanceOverviewComponent,
     SearchFlterPipe,
+    TeacherAttendanceComponent,
   ],
   imports: [
     BrowserModule,
