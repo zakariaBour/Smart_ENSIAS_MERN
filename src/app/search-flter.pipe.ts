@@ -12,6 +12,8 @@ export class SearchFlterPipe implements PipeTransform {
       student.first_name.toLowerCase().includes(searchValue.toLowerCase())
       ||
       student.last_name.toLowerCase().includes(searchValue.toLowerCase())
+      ||
+      student.cne.includes(searchValue)
     );
   }
 }
