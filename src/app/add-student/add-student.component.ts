@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
   styleUrls: ['./add-student.component.css'],
-  providers : [StudentService]
+  providers: [StudentService]
 })
 export class AddStudentComponent {
   formData: any;
@@ -21,15 +21,10 @@ export class AddStudentComponent {
     // dob: ,
     password: ''
   }
-  
-
- 
   students: Student[] = [];
   addStudentForm: FormGroup;
 
-  // constructor(private formBuilder: FormBuilder, private studentService: StudentService) { }
-
-  constructor(private studentService : StudentService,private toastr: ToastrService) {
+  constructor(private studentService: StudentService, private toastr: ToastrService) {
     this.addStudentForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.required,
@@ -91,58 +86,29 @@ export class AddStudentComponent {
   get email() {
     return this.addStudentForm.get('email');
   }
-  addStudent(student : Student){
-      this.studentService.addStudent(student).subscribe(students => {
-        this.toastr.success('Student added successfully');
-      },error => {
-        this.toastr.error('error');
-        console.log(error);
-      });
+  addStudent(student: Student) {
+    this.studentService.addStudent(student).subscribe(students => {
+      this.toastr.success('Student added successfully');
+    }, error => {
+      this.toastr.error('error');
+      console.log(error);
+    });
   }
   onSubmit(): any {
     this.formData = this.addStudentForm.value;
-    let student : Student;
+    let student: Student;
     student = {
-      cne : this.formData?.codeApogee,
-      first_name : this.formData?.firstname,
-      last_name : this.formData?.lastname,
-      phone : this.formData?.mobileNumber,
-      email : this.formData?.email,
-      gender : this.formData?.gender,
-      password : this.formData?.PasswordAccount
+      cne: this.formData?.codeApogee,
+      first_name: this.formData?.firstname,
+      last_name: this.formData?.lastname,
+      phone: this.formData?.mobileNumber,
+      email: this.formData?.email,
+      gender: this.formData?.gender,
+      password: this.formData?.PasswordAccount
     }
     //addStudent();
     console.log(this.formData);
     console.log(student);
     this.addStudent(student);
   }
-
-  /*
-   PasswordAccount
-: 
-"dkkdkddkd"
-codeApogee
-: 
-"kkdkdkd"
-dob
-: 
-"2023-04-06"
-email
-: 
-"abderazaknfissi34@gmail.com"
-firstname
-: 
-"abderrazzak"
-gender
-: 
-"Male"
-lastname
-: 
-"nfissi"
-mobileNumber
-: 
-"0611461930"
-
-  */
-  
 }

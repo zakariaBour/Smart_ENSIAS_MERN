@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AbstractControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Student } from '../models/student';
+import { StudentService } from '../services/student.service';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { TeacherService } from '../Services/teacher.service';
 import { Teacher } from '../models/teacher';
-import { ToastrService } from 'ngx-toastr';
 @Component({
-  selector: 'app-add-teacher',
-  templateUrl: './add-teacher.component.html',
-  styleUrls: ['./add-teacher.component.css'],
+  selector: 'app-edit-teacher',
+  templateUrl: './edit-teacher.component.html',
+  styleUrls: ['./edit-teacher.component.css'],
   providers: [TeacherService]
 })
-export class AddTeacherComponent {
+export class EditTeacherComponent {
   addTeacherForm: FormGroup;
   cinRegx: string = "^[A-Z0-9]{8}$";
   nameRegx: string = "^[A-Za-z\s]{2,50}$";
@@ -27,9 +30,11 @@ export class AddTeacherComponent {
     emailId: '',
     password: ''
   }
+  teachers: Teacher[] = [];
 
 
-  constructor(private teacherService: TeacherService, private toastr: ToastrService) {
+  constructor(private teacherService: TeacherService, private toastr: ToastrService, private route: ActivatedRoute
+    , private fb: FormBuilder) {
     this.addTeacherForm = new FormGroup({
       cin: new FormControl('', [
         Validators.required,
@@ -70,9 +75,10 @@ export class AddTeacherComponent {
       ])
 
     });
-
+    this.getTeacherByCin();
   }
-
+  currentTeacher: any;
+  current_cin: any;
   matchPassword(control: AbstractControl): { [key: string]: any } | null {
     const password = control.parent?.get('password');
     const confirmPassword = control;
@@ -120,6 +126,26 @@ export class AddTeacherComponent {
   get confirmPassword() {
     return this.addTeacherForm.get('confirmPassword');
   }
+
+  getTeacherByCin() {
+    this.current_cin = this.route.snapshot.paramMap.get('cin');
+    this.teacherService.findTeacherByCin(this.current_cin).subscribe(teacher => {
+      this.currentTeacher = teacher;
+      console.log(this.currentTeacher);
+      this.addTeacherForm = this.fb.group({
+        name: this.currentTeacher.name,
+        mobile: this.currentTeacher.phone,
+        gender: this.currentTeacher.gender,
+        dob: this.currentTeacher.dob,
+        JoiningDate: this.currentTeacher.joiningDate,
+        cin: this.currentTeacher.cin,
+        password: this.currentTeacher.password,
+        email: this.currentTeacher.emailId,
+        userName: this.currentTeacher.username
+      });
+    });
+  }
+
   addTeacher(teacher: Teacher) {
     this.teacherService.addTeacher(teacher).subscribe(teachers => {
       this.toastr.success('teacher added successfully');

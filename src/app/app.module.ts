@@ -23,6 +23,8 @@ import { StudentAttendanceComponent } from './student-attendance/student-attenda
 import { OverviewChartComponent } from './overview-chart/overview-chart.component';
 import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
 import { SearchFlterPipe } from './search-flter.pipe';
+import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+import { SearchTeachersPipe } from './search-teachers.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,10 +32,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'studentdetails', component: StudentListComponent },
   { path: 'Addstudent', component: AddStudentComponent },
-  { path:'teachers',component : TeacherListComponent},
-  { path: 'addTeacher',component : AddTeacherComponent},
-  { path :'editStudent/:cne',component : EditStudentComponent},
-  { path : 'attendance', component : StudentAttendanceComponent},
+  { path: 'teachers', component: TeacherListComponent },
+  { path: 'addTeacher', component: AddTeacherComponent },
+  { path: 'editStudent/:cne', component: EditStudentComponent },
+  { path: 'attendance', component: StudentAttendanceComponent },
   { path: 'teachers', component: TeacherListComponent },
   { path: 'addTeacher', component: AddTeacherComponent },
   { path: 'editStudent/:cne', component: EditStudentComponent }
@@ -55,6 +57,8 @@ const routes: Routes = [
     OverviewChartComponent,
     ClassAttendanceOverviewComponent,
     SearchFlterPipe,
+    EditTeacherComponent,
+    SearchTeachersPipe,
   ],
   imports: [
     BrowserModule,
