@@ -35,7 +35,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let student of students;let index = index">
+      <tr *ngFor="let student of students | searchFlter: searchService.searchText ; let index = index  ">
          <td>{{student.cne}}</td>
          <td>
           <h2 class="table-avatar">
@@ -44,10 +44,10 @@
           </h2>
 
          </td>
-         <td>{{student.genre}}</td>
+         <td>{{student.gender}}</td>
          <td>0</td>
          <td>{{student.phone}}</td>
-         <td>{{student.email}}</td>         
+         <td>{{student.email}}</td>
          <td class="text-right">
           <div class="actions">
           <a [routerLink]="['/editStudent',student.cne]"  class="btn btn-sm bg-success-light mr-2">
