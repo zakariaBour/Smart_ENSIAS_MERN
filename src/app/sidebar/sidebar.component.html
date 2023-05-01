@@ -47,12 +47,12 @@
                     <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/addTeacher">Subjects Add</a></li>
                                    
                  <li style="cursor: pointer;">         
-                          <a  (click)="change(3)">
-                                     <i class="fas fa-calendar-alt"></i> <span> Attendance </span> <span class="menu-arrow"></span>
-                        </a>
+                  <a  (click)="change(3)">
+                     <i class="fas fa-calendar-alt"></i> <span> Attendance </span> <span class="menu-arrow"></span>
+                  </a>
                 </li>         
-                                 <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/attendance">Teachers attendance</a></li>
-                                 <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/attendance">Students attendance</a></li>
+                        <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/attendance/teachers">Teachers attendance</a></li>
+                        <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/attendance/students">Students attendance</a></li>
                
                                      
                                
