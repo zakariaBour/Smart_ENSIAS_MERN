@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./edit-student.component.css']
 })
 
-export class EditStudentComponent implements OnInit {
+export class EditStudentComponent implements OnInit{
   formData: any;
   myStudent: Student = {
     cne: '',
@@ -29,10 +29,12 @@ export class EditStudentComponent implements OnInit {
   students: Student[] = [];
   addStudentForm: FormGroup;
 
-  constructor(private studentService: StudentService,
-    private toastr: ToastrService, private route: ActivatedRoute
-    , private fb: FormBuilder) {
+  // constructor(private formBuilder: FormBuilder, private studentService: StudentService) { }
 
+  constructor(private studentService : StudentService,
+    private toastr: ToastrService, private route: ActivatedRoute
+    ,private fb: FormBuilder) {
+      
     this.addStudentForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.required,
@@ -67,11 +69,11 @@ export class EditStudentComponent implements OnInit {
     });
     this.getStudentByCne();
   }
-  currentStudent: any;
+  currentStudent : any;
   current_cne: any;
-  ngOnInit(): void {
+  ngOnInit(): void { 
   }
-
+ 
   get firstname() {
     return this.addStudentForm.get('firstname');
   }
@@ -100,50 +102,88 @@ export class EditStudentComponent implements OnInit {
   get email() {
     return this.addStudentForm.get('email');
   }
-  getStudentByCne() {
+  getStudentByCne(){
     this.current_cne = this.route.snapshot.paramMap.get('cne');
-    this.studentService.findStudentByCne(this.current_cne).subscribe(student => {
+    this.studentService.findStudentByCne(this.current_cne).subscribe(student=>{
       this.currentStudent = student;
       console.log(this.currentStudent);
+      /*
+        attendances
+: 
+[]
+cne
+: 
+"110200202"
+date_of_birth
+: 
+null
+email
+: 
+"roubale123@gmail.com"
+first_name
+: 
+"Roubale"
+genre
+: 
+"HOMME"
+id
+: 
+1
+image_url
+: 
+null
+last_name
+: 
+"roubale"
+password
+: 
+"10000"
+phone
+: 
+"+234556771"
+username
+: 
+"roubale"
 
+      */
 
       this.addStudentForm = this.fb.group({
         firstname: this.currentStudent.first_name,
-        lastname: this.currentStudent.last_name,
-        gender: this.currentStudent.gender,
-        dob: this.currentStudent.date_of_birth,
-        mobileNumber: this.currentStudent.phone,
-        codeApogee: this.currentStudent.cne,
-        PasswordAccount: this.currentStudent.password,
-        email: this.currentStudent.email
+        lastname : this.currentStudent.last_name,
+        gender : this.currentStudent.genre,
+        dob : this.currentStudent.date_of_birth,
+        mobileNumber : this.currentStudent.phone,
+        codeApogee : this.currentStudent.cne,
+        PasswordAccount : this.currentStudent.password,
+        email : this.currentStudent.email
       });
     });
   }
-  addStudent(student: Student) {
-    this.studentService.addStudent(student).subscribe(students => {
-      this.toastr.success('Student added successfully');
-    }, error => {
-      this.toastr.error('error');
-      console.log(error);
-    });
+  addStudent(student : Student){
+      this.studentService.addStudent(student).subscribe(students => {
+        this.toastr.success('Student added successfully');
+      },error => {
+        this.toastr.error('error');
+        console.log(error);
+      });
   }
   onSubmit(): any {
     this.formData = this.addStudentForm.value;
-    let student: Student;
+    let student : Student;
     student = {
-      cne: this.formData?.codeApogee,
-      first_name: this.formData?.firstname,
-      last_name: this.formData?.lastname,
-      phone: this.formData?.mobileNumber,
-      email: this.formData?.email,
-      gender: this.formData?.gender,
-      password: this.formData?.PasswordAccount
+      cne : this.formData?.codeApogee,
+      first_name : this.formData?.firstname,
+      last_name : this.formData?.lastname,
+      phone : this.formData?.mobileNumber,
+      email : this.formData?.email,
+      gender : this.formData?.gender,
+      password : this.formData?.PasswordAccount
     }
     //addStudent();
     console.log(this.formData);
     console.log(student);
     this.addStudent(student);
   }
-
+  
 }
 

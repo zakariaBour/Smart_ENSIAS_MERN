@@ -1,61 +1,64 @@
 import { Component } from '@angular/core';
-import * as saveAs from 'file-saver';
-import { ToastrService } from 'ngx-toastr';
-import { TeacherService } from '../Services/teacher.service';
-import { SearchService } from '../search.service';
-import { Teacher } from '../models/teacher';
 
 @Component({
   selector: 'app-teacher-list',
   templateUrl: './teacher-list.component.html',
-  styleUrls: ['./teacher-list.component.css'],
-  providers: [TeacherService]
-
+  styleUrls: ['./teacher-list.component.css']
 })
 export class TeacherListComponent {
-  teachers: any;
-  constructor(private teacherService: TeacherService
-    , private toastr: ToastrService, public searchService: SearchService) { }
-
-  ngOnInit(): void {
-    this.teacherService.getTeachers().subscribe((data) => {
-      this.teachers = data;
-      console.log(this.searchService.searchText)
-    })
-  }
-
-
-  deleteTeacher(cin: string) {
-    this.teacherService.deleteTeacher(cin).subscribe(() => {
-      this.toastr.success('Student deleted successfully');
-      this.getTeachers();
-    }, error => {
-      this.toastr.error("Failed to delete student");
-      console.log(error);
-    });
-  }
-
-  getTeachers(): void {
-    this.teacherService.getTeachers().subscribe(teachers => {
-      this.teachers = teachers;
-    });
-  }
-
-  downloadTeachers(): void {
-    this.teacherService.getTeachers().subscribe(teachers => {
-      this.teachers = teachers;
-      const data = this.generateCsvData(this.teachers);
-      const blob = new Blob([data], { type: 'text/csv;charset=utf-8' });
-      saveAs(blob, 'teachers.csv');
-    });
-  }
-
-  generateCsvData(teachers: Teacher[]): string {
-    const headers = ['ID', 'CIN', 'Name', 'Phone', 'Email', 'Gender', 'Image URL', 'Date of Birth', 'Password', 'Username', 'Joining Date'];
-    const rows = teachers.map(teacher => {
-      const row = [teacher.id, teacher.cin, teacher.name, teacher.phone, teacher.gender, teacher.imageUrl, teacher.dob, teacher.password];
-      return row.join(',');
-    });
-    return [headers.join(','), ...rows].join('\n');
-  }
+  teachers = [
+    {
+      "CIN": "ZT277932",
+      "Name": "AHMED ROUBALE",
+      "Class": "10",
+      "Gender": "MALE",
+      "Subject": "MACHINE LEARNING",
+      "Section": "A",
+      "Mobile Number": "0628201023",
+      "Email": "Ahmed.roubale@gmail.com"
+    },
+    {
+      "CIN": "AK465821",
+      "Name": "FATIMA ZAHRA",
+      "Class": "11",
+      "Gender": "FEMALE",
+      "Subject": "BIOLOGY",
+      "Section": "B",
+      "Mobile Number": "0627508943",
+      "Email": "fatima.zahra@gmail.com"
+    },
+    {
+      "CIN": "DK764932",
+      "Name": "SAID EL MAHDI",
+      "Class": "12",
+      "Gender": "MALE",
+      "Subject": "PHYSICS",
+      "Section": "C",
+      "Mobile Number": "0624309258",
+      "Email": "said.elmahdi@gmail.com"
+    },
+    {
+      "CIN": "FG645391",
+      "Name": "SARA MOUSSAOUI",
+      "Class": "10",
+      "Gender": "FEMALE",
+      "Subject": "CHEMISTRY",
+      "Section": "A",
+      "Mobile Number": "0623100967",
+      "Email": "sara.moussaoui@gmail.com"
+    },
+    {
+      "CIN": "HG346198",
+      "Name": "YASSINE EL KABBAJ",
+      "Class": "11",
+      "Gender": "MALE",
+      "Subject": "ENGLISH",
+      "Section": "B",
+      "Mobile Number": "0628974305",
+      "Email": "yassine.elkabbaj@gmail.com"
+    }
+  ];
+   constructor(){
+    console.log(this.teachers);
+   }
 }
