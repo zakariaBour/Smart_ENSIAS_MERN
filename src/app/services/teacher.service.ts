@@ -1,35 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
-import { Teacher } from '../models/teacher';
-const httpOptions = {
-  headers: new HttpHeaders(
-    {
-      'Content-Type': 'application/json',
-    }
-  )
-};
+import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
 export class TeacherService {
-
-  private apiUrl = 'http://localhost:8080/';
-  readonly endPointStudents = '/teachers'
+  
+  private apiUrl = 'http://localhost:8080/teachers';
 
   constructor(private http: HttpClient) {
+    
+   }
+
+  getAllTeachers() {
+    return this.http.get<any[]>(this.apiUrl);
   }
-  getTeachers() {
-    return this.http.get(this.apiUrl + this.endPointStudents, httpOptions);
+
+  getTeacherById(id: string) {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<any>(url);
   }
-  deleteTeacher(cin: string) {
-    return this.http.delete(this.apiUrl + this.endPointStudents + "/" + cin);
+
+  addTeacher(teacher: any) {
+    return this.http.post<any>(this.apiUrl, teacher);
   }
-  addTeacher(teacher: Teacher): Observable<Teacher> {
-    let addTeacherUrl = this.apiUrl + this.endPointStudents + "/enrollTeacher";
-    return this.http.post<Teacher>(addTeacherUrl, teacher, httpOptions);
+
+  updateTeacher(id: string, updates: any) {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<any>(url, updates);
   }
-  findTeacherByCin(cin: string) {
-    return this.http.get(this.apiUrl + this.endPointStudents + "/" + cin, httpOptions);
+
+  deleteTeacher(id: string) {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<any>(url);
   }
 }

@@ -3,6 +3,7 @@ import { Student } from '../models/student';
 import { ToastrService } from 'ngx-toastr';
 import { StudentService } from '../services/student.service';
 import { saveAs } from 'file-saver';
+import { NavbarComponent } from '../navbar/navbar.component';
 import { SearchService } from '../search.service';
 @Component({
   selector: 'app-student-list',
@@ -45,6 +46,7 @@ export class StudentListComponent implements OnInit {
       const data = this.generateCsvData(this.students);
       const blob = new Blob([data], { type: 'text/csv;charset=utf-8' });
       saveAs(blob, 'students.csv');
+
     });
   }
 
@@ -56,4 +58,9 @@ export class StudentListComponent implements OnInit {
     });
     return [headers.join(','), ...rows].join('\n');
   }
+
+
+
+
+
 }

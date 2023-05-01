@@ -24,8 +24,12 @@ import { OverviewChartComponent } from './overview-chart/overview-chart.componen
 import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
 import { SearchFlterPipe } from './search-flter.pipe';
 import { TeacherAttendanceComponent } from './teacher-attendance/teacher-attendance.component';
-import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
-import { SearchTeachersPipe } from './search-teachers.pipe';
+import { HolidayComponent } from './holiday/holiday.component';
+import { AddHolidayComponent } from './add-holiday/add-holiday.component';
+import { ExamComponent } from './exam/exam.component';
+import { EventsComponent } from './events/events.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -33,15 +37,20 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'studentdetails', component: StudentListComponent },
   { path: 'Addstudent', component: AddStudentComponent },
-  { path: 'teachers', component: TeacherListComponent },
-  { path: 'addTeacher', component: AddTeacherComponent },
-  { path: 'editStudent/:cne', component: EditStudentComponent },
-  { path: 'attendance', component: StudentAttendanceComponent },
+  { path:'teachers',component : TeacherListComponent},
+  { path: 'addTeacher',component : AddTeacherComponent},
+  { path :'editStudent/:cne',component : EditStudentComponent},
+  { path : 'attendance', component : StudentAttendanceComponent},
   { path: 'teachers', component: TeacherListComponent },
   { path: 'addTeacher', component: AddTeacherComponent },
   { path: 'editStudent/:cne', component: EditStudentComponent },
   { path: 'attendance/students',component : StudentAttendanceComponent},
-  { path : 'attendance/teachers', component : TeacherAttendanceComponent}
+  { path : 'attendance/teachers', component : TeacherAttendanceComponent},
+  { path : 'holiday/add',component : AddHolidayComponent},
+  { path : 'holiday',component : HolidayComponent},
+  { path : 'exams',component : ExamComponent},
+  { path : 'events', component:EventsComponent},
+  
 ];
 
 @NgModule({
@@ -61,8 +70,10 @@ const routes: Routes = [
     ClassAttendanceOverviewComponent,
     SearchFlterPipe,
     TeacherAttendanceComponent,
-    EditTeacherComponent,
-    SearchTeachersPipe,
+    HolidayComponent,
+    AddHolidayComponent,
+    ExamComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +84,14 @@ const routes: Routes = [
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NgApexchartsModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+
   ],
   providers: [
     StudentService
