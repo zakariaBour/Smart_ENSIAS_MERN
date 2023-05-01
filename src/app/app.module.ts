@@ -14,10 +14,14 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgApexchartsModule } from "ng-apexcharts";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentService } from './services/student.service';
 import { EditStudentComponent } from './edit-student/edit-student.component';
+import { StudentAttendanceComponent } from './student-attendance/student-attendance.component';
+import { OverviewChartComponent } from './overview-chart/overview-chart.component';
+import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
 import { SearchFlterPipe } from './search-flter.pipe';
 
 const routes: Routes = [
@@ -26,6 +30,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'studentdetails', component: StudentListComponent },
   { path: 'Addstudent', component: AddStudentComponent },
+  { path:'teachers',component : TeacherListComponent},
+  { path: 'addTeacher',component : AddTeacherComponent},
+  { path :'editStudent/:cne',component : EditStudentComponent},
+  { path : 'attendance', component : StudentAttendanceComponent}
   { path: 'teachers', component: TeacherListComponent },
   { path: 'addTeacher', component: AddTeacherComponent },
   { path: 'editStudent/:cne', component: EditStudentComponent }
@@ -43,6 +51,9 @@ const routes: Routes = [
     TeacherListComponent,
     AddTeacherComponent,
     EditStudentComponent,
+    StudentAttendanceComponent,
+    OverviewChartComponent,
+    ClassAttendanceOverviewComponent,
     SearchFlterPipe,
   ],
   imports: [
@@ -53,6 +64,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    NgApexchartsModule,
     FormsModule
   ],
   providers: [
