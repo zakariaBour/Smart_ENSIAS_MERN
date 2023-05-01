@@ -15,11 +15,11 @@ export class OverviewChartComponent {
   chartSeries: ApexAxisChartSeries = [
     {
       name: "Grils",
-      data: [44, 55, 41, 67, 22, 43,44, 55, 41, 67, 22, 43]
+      data: [70, 80, 76, 40, 80, 20,40, 35, 49, 20, 50, 50]
     },
     {
       name: "Boys",
-      data: [13, 23, 20, 8, 13, 27,44, 55, 41, 67, 22, 43]
+     data: [60, 50, 76, 72, 60, 70,20, 35, 49, 60, 30, 40]
     }
   ];
 

@@ -21,6 +21,7 @@ import { StudentService } from './services/student.service';
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import { StudentAttendanceComponent } from './student-attendance/student-attendance.component';
 import { OverviewChartComponent } from './overview-chart/overview-chart.component';
+import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -48,6 +49,7 @@ const routes: Routes = [
     EditStudentComponent,
     StudentAttendanceComponent,
     OverviewChartComponent,
+    ClassAttendanceOverviewComponent,
     
   ],
   imports: [
