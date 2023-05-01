@@ -14,11 +14,13 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgApexchartsModule } from "ng-apexcharts";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentService } from './services/student.service';
 import { EditStudentComponent } from './edit-student/edit-student.component';
+import { StudentAttendanceComponent } from './student-attendance/student-attendance.component';
+import { OverviewChartComponent } from './overview-chart/overview-chart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'Addstudent', component: AddStudentComponent },
   { path:'teachers',component : TeacherListComponent},
   { path: 'addTeacher',component : AddTeacherComponent},
-  { path :'editStudent/:cne',component : EditStudentComponent}
+  { path :'editStudent/:cne',component : EditStudentComponent},
+  { path : 'attendance', component : StudentAttendanceComponent}
 ];
 
 @NgModule({
@@ -43,6 +46,8 @@ const routes: Routes = [
     TeacherListComponent,
     AddTeacherComponent,
     EditStudentComponent,
+    StudentAttendanceComponent,
+    OverviewChartComponent,
     
   ],
   imports: [
@@ -52,7 +57,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgApexchartsModule
   ],
   providers: [
     StudentService

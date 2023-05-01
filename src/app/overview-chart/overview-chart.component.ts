@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexLegend, ApexFill } from 'ng-apexcharts';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-overview-chart',
+  templateUrl: './overview-chart.component.html',
+  styleUrls: ['./overview-chart.component.css']
 })
-export class MainComponent {
+
+
+
+
+export class OverviewChartComponent {
   // chart 1
   chartSeries: ApexAxisChartSeries = [
     {
