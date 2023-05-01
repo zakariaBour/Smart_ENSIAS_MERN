@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ToastrModule } from 'ngx-toastr';
@@ -22,6 +22,7 @@ import { EditStudentComponent } from './edit-student/edit-student.component';
 import { StudentAttendanceComponent } from './student-attendance/student-attendance.component';
 import { OverviewChartComponent } from './overview-chart/overview-chart.component';
 import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
+import { SearchFlterPipe } from './search-flter.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -33,6 +34,9 @@ const routes: Routes = [
   { path: 'addTeacher',component : AddTeacherComponent},
   { path :'editStudent/:cne',component : EditStudentComponent},
   { path : 'attendance', component : StudentAttendanceComponent}
+  { path: 'teachers', component: TeacherListComponent },
+  { path: 'addTeacher', component: AddTeacherComponent },
+  { path: 'editStudent/:cne', component: EditStudentComponent }
 ];
 
 @NgModule({
@@ -50,7 +54,7 @@ const routes: Routes = [
     StudentAttendanceComponent,
     OverviewChartComponent,
     ClassAttendanceOverviewComponent,
-    
+    SearchFlterPipe,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    FormsModule
   ],
   providers: [
     StudentService
