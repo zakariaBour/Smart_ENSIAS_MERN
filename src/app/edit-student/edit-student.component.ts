@@ -17,8 +17,8 @@ export class EditStudentComponent implements OnInit{
   formData: any;
   myStudent: Student = {
     cne: '',
-    first_name: '',
-    last_name: '',
+    firstname: '',
+    lastname: '',
     phone: '',
     email: '',
     gender: '',
@@ -120,7 +120,7 @@ null
 email
 : 
 "roubale123@gmail.com"
-first_name
+firstname
 : 
 "Roubale"
 genre
@@ -132,7 +132,7 @@ id
 image_url
 : 
 null
-last_name
+lastname
 : 
 "roubale"
 password
@@ -148,8 +148,8 @@ username
       */
 
       this.addStudentForm = this.fb.group({
-        firstname: this.currentStudent.first_name,
-        lastname : this.currentStudent.last_name,
+        firstname: this.currentStudent.firstname,
+        lastname : this.currentStudent.lastname,
         gender : this.currentStudent.genre,
         dob : this.currentStudent.date_of_birth,
         mobileNumber : this.currentStudent.phone,
@@ -172,8 +172,8 @@ username
     let student : Student;
     student = {
       cne : this.formData?.codeApogee,
-      first_name : this.formData?.firstname,
-      last_name : this.formData?.lastname,
+      firstname : this.formData?.firstname,
+      lastname : this.formData?.lastname,
       phone : this.formData?.mobileNumber,
       email : this.formData?.email,
       gender : this.formData?.gender,

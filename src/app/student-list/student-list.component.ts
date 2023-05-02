@@ -53,7 +53,7 @@ export class StudentListComponent implements OnInit {
   generateCsvData(students: Student[]): string {
     const headers = ['ID', 'CNE', 'First Name', 'Last Name', 'Phone', 'Email', 'Gender', 'Image URL', 'Date of Birth', 'Password'];
     const rows = students.map(student => {
-      const row = [student.id, student.cne, student.first_name, student.last_name, student.phone, student.email, student.gender, student.imageUrl, student.dob, student.password];
+      const row = [student.id, student.cne, student.firstname, student.lastname, student.phone, student.email, student.gender, student.image_url, student.date_of_birth, student.password];
       return row.join(',');
     });
     return [headers.join(','), ...rows].join('\n');

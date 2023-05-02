@@ -13,8 +13,8 @@ export class AddStudentComponent {
   formData: any;
   myStudent: Student = {
     cne: '',
-    first_name: '',
-    last_name: '',
+    firstname: '',
+    lastname: '',
     phone: '',
     email: '',
     gender: '',
@@ -92,6 +92,7 @@ export class AddStudentComponent {
     return this.addStudentForm.get('email');
   }
   addStudent(student : Student){
+   console.log(student);
       this.studentService.addStudent(student).subscribe(students => {
         this.toastr.success('Student added successfully');
       },error => {
@@ -104,17 +105,18 @@ export class AddStudentComponent {
     let student : Student;
     student = {
       cne : this.formData?.codeApogee,
-      first_name : this.formData?.firstname,
-      last_name : this.formData?.lastname,
+      firstname : this.formData?.firstname,
+      lastname : this.formData?.lastname,
       phone : this.formData?.mobileNumber,
       email : this.formData?.email,
-      gender : this.formData?.gender,
-      password : this.formData?.PasswordAccount
+      gender : this.formData?.gender=='Male' ? 'HOMME': 'FEMME',
+      password : this.formData?.PasswordAccount,
+      date_of_birth : "1999-08-17"
     }
-    //addStudent();
-    console.log(this.formData);
+   
     console.log(student);
-    this.addStudent(student);
+    let x= this.addStudent(student);
+    console.log(x);
   }
 
   /*
