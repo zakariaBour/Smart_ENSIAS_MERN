@@ -92,7 +92,7 @@ export class AddStudentComponent {
     return this.addStudentForm.get('email');
   }
   addStudent(student : Student){
-   console.log(student);
+   
       this.studentService.addStudent(student).subscribe(students => {
         this.toastr.success('Student added successfully');
       },error => {

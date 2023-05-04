@@ -34,7 +34,7 @@ export class StudentService {
        console.log(response)
       })
     );
-;
+
   }
   findStudentByCne(cne : string){
    return this.http.get(this.apiUrl+this.endPointStudents+"/"+cne,httpOptions);
