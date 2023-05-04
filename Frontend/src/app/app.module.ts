@@ -1,3 +1,4 @@
+import { TeacherService } from './services/teacher.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
@@ -37,20 +38,20 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'studentdetails', component: StudentListComponent },
   { path: 'Addstudent', component: AddStudentComponent },
-  { path:'teachers',component : TeacherListComponent},
-  { path: 'addTeacher',component : AddTeacherComponent},
-  { path :'editStudent/:cne',component : EditStudentComponent},
-  { path : 'attendance', component : StudentAttendanceComponent},
   { path: 'teachers', component: TeacherListComponent },
   { path: 'addTeacher', component: AddTeacherComponent },
   { path: 'editStudent/:cne', component: EditStudentComponent },
-  { path: 'attendance/students',component : StudentAttendanceComponent},
-  { path : 'attendance/teachers', component : TeacherAttendanceComponent},
-  { path : 'holiday/add',component : AddHolidayComponent},
-  { path : 'holiday',component : HolidayComponent},
-  { path : 'exams',component : ExamComponent},
-  { path : 'events', component:EventsComponent},
-  
+  { path: 'attendance', component: StudentAttendanceComponent },
+  { path: 'teachers', component: TeacherListComponent },
+  { path: 'addTeacher', component: AddTeacherComponent },
+  { path: 'editStudent/:cne', component: EditStudentComponent },
+  { path: 'attendance/students', component: StudentAttendanceComponent },
+  { path: 'attendance/teachers', component: TeacherAttendanceComponent },
+  { path: 'holiday/add', component: AddHolidayComponent },
+  { path: 'holiday', component: HolidayComponent },
+  { path: 'exams', component: ExamComponent },
+  { path: 'events', component: EventsComponent },
+
 ];
 
 @NgModule({
@@ -60,7 +61,8 @@ const routes: Routes = [
     SidebarComponent,
     MainComponent,
     AddStudentComponent,
-    StudentListComponent, LoginComponent,
+    StudentListComponent,
+    LoginComponent,
     DashboardComponent,
     TeacherListComponent,
     AddTeacherComponent,
@@ -94,7 +96,8 @@ const routes: Routes = [
 
   ],
   providers: [
-    StudentService
+    StudentService,
+    TeacherService
   ],
   bootstrap: [AppComponent]
 })
