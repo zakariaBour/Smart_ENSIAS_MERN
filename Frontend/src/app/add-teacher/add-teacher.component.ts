@@ -1,116 +1,145 @@
+import { TeacherService } from '../services/teacher.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
-
+import { Teacher } from '../models/teacher';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-teacher',
   templateUrl: './add-teacher.component.html',
-  styleUrls: ['./add-teacher.component.css']
+  styleUrls: ['./add-teacher.component.css'],
+  providers: [TeacherService]
 })
 export class AddTeacherComponent {
-  addTeacherForm  : FormGroup;
-  cinRegx  : string = "^[A-Z0-9]{8}$";
-  nameRegx : string = "^[A-Za-z\s]{2,50}$";
-  mobileRegx : string = "^[0-9]{10}$";
-  UsernameRegx : string = "^[A-Za-z\s]{3,50}$"; 
-  emailRegx : string  = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
-  formData : any;
-
-  
-  
-  constructor(){
-   this.addTeacherForm = new FormGroup({
-    cin: new FormControl('',[
-      Validators.required,
-      Validators.pattern(this.cinRegx)
-    ]), 
-    name: new FormControl('',[
-      Validators.required,
-      Validators.pattern(this.nameRegx)
-    ]),
-    gender: new FormControl('',[
-      Validators.required
-    ]),
-    dob: new FormControl('',[
-      Validators.required
-    ]),
-    mobile : new FormControl('',[
-      Validators.required,
-      Validators.pattern(this.mobileRegx)
-    ]),
-    JoiningDate : new FormControl('',[
-      Validators.required
-    ]),
-    userName : new FormControl('',[
-      Validators.required,
-      Validators.pattern(this.UsernameRegx)
-    ]),
-    email : new FormControl('',[
-      Validators.required,
-      Validators.pattern(this.emailRegx)
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8)
-    ]),
-    confirmPassword: new FormControl('', [
-      Validators.required,
-      this.matchPassword.bind(this)
-    ])
-    
-  });
-  
+  formData: any;
+  myTeacher: Teacher = {
+    matricule: '',
+    firstname: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    gender: '',
+    date_of_birth: '',
+    // joining_date: '',
+    password: ''
   }
 
-  matchPassword(control: AbstractControl): {[key: string]: any} | null {
-    const password = control.parent?.get('password');
+  teachers: Teacher[] = [];
+  addTeacherForm: FormGroup;
+
+  constructor(private teacherService: TeacherService, private toastr: ToastrService) {
+    this.addTeacherForm = new FormGroup({
+      firstname: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      lastname: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      gender: new FormControl('', [
+        Validators.required
+      ]),
+      dob: new FormControl('', [
+        Validators.required,
+        //  this.dobValidator
+      ]),
+      // jod: new FormControl('', [
+      //   Validators.required,
+      //   //  this.dobValidator
+      // ])
+      // ,
+      mobileNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d{7,}$/)
+      ]),
+      matricule: new FormControl('', [
+        Validators.required
+      ]),
+      PasswordAccount: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8)
+      ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        this.matchPassword.bind(this)
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
+      ]),
+
+    });
+  }
+  matchPassword(control: AbstractControl): { [key: string]: any } | null {
+    const PasswordAccount = control.parent?.get('PasswordAccount');
     const confirmPassword = control;
-  
-    if (password?.value !== confirmPassword.value) {
+
+    if (PasswordAccount?.value !== confirmPassword.value) {
       return { passwordMismatch: true };
     }
     return null;
   }
-  
-
-  get cin(){
-    return this.addTeacherForm.get('cin');
+  get firstname() {
+    return this.addTeacherForm.get('firstname');
   }
-  get name(){
-    return this.addTeacherForm.get('name');
+  get lastname() {
+    return this.addTeacherForm.get('lastname');
   }
-  get gender(){
+  get gender() {
     return this.addTeacherForm.get('gender');
   }
-  get dob(){
+  get dob() {
     return this.addTeacherForm.get('dob');
   }
-  
-  get mobile(){
-    return this.addTeacherForm.get('mobile');
+  // get jod() {
+  //   return this.addTeacherForm.get('jod');
+  // }
+  get mobileNumber() {
+    return this.addTeacherForm.get('mobileNumber');
   }
-  
-  get JoiningDate(){
-    return this.addTeacherForm.get('JoiningDate');
+
+  get matricule() {
+    return this.addTeacherForm.get('matricule');
   }
-  
-  get userName(){
-    return this.addTeacherForm.get('userName');
+
+  get PasswordAccount() {
+    return this.addTeacherForm.get('PasswordAccount');
   }
-  
-  get email(){
-    return this.addTeacherForm.get('email');
-  }
-  
-  get password(){
-    return this.addTeacherForm.get('password');
-  }
-  
-  get confirmPassword(){
+  get confirmPassword() {
     return this.addTeacherForm.get('confirmPassword');
   }
-  onSubmit(): any{
-    this.formData  = this.addTeacherForm.value;
-    console.log(this.formData);
+
+
+  get email() {
+    return this.addTeacherForm.get('email');
+  }
+  addTeacher(teacher: Teacher) {
+    console.log(teacher);
+    this.teacherService.addTeacher(teacher).subscribe((teachers: any) => {
+      this.toastr.success('Teacher added successfully');
+    }, (error: any) => {
+      this.toastr.error('error');
+      console.log(error);
+    });
+  }
+  onSubmit(): any {
+    this.formData = this.addTeacherForm.value;
+    let teacher: Teacher;
+    teacher = {
+      matricule: this.formData?.matricule,
+      firstname: this.formData?.firstname,
+      lastname: this.formData?.lastname,
+      phone: this.formData?.mobileNumber,
+      email: this.formData?.email,
+      gender: this.formData?.gender == 'Male' ? 'MALE' : 'FEMALE',
+      password: this.formData?.PasswordAccount,
+      date_of_birth: this.formData?.dob,
+      // joining_date: this.formData?.jod
+    }
+
+    console.log(teacher);
+    let x = this.addTeacher(teacher);
+    console.log(x);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';
 import { ToastrService } from 'ngx-toastr';
@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
   styleUrls: ['./add-student.component.css'],
-  providers : [StudentService]
+  providers: [StudentService]
 })
 export class AddStudentComponent {
   formData: any;
@@ -18,18 +18,14 @@ export class AddStudentComponent {
     phone: '',
     email: '',
     gender: '',
-    // dob: ,
+    date_of_birth: '',
     password: ''
   }
-  
 
- 
   students: Student[] = [];
   addStudentForm: FormGroup;
 
-  // constructor(private formBuilder: FormBuilder, private studentService: StudentService) { }
-
-  constructor(private studentService : StudentService,private toastr: ToastrService) {
+  constructor(private studentService: StudentService, private toastr: ToastrService) {
     this.addStudentForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.required,
@@ -57,11 +53,25 @@ export class AddStudentComponent {
         Validators.required,
         Validators.minLength(8)
       ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        this.matchPassword.bind(this)
+      ]),
+
       email: new FormControl('', [
         Validators.required,
         Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
       ])
     });
+  }
+  matchPassword(control: AbstractControl): { [key: string]: any } | null {
+    const PasswordAccount = control.parent?.get('PasswordAccount');
+    const confirmPassword = control;
+
+    if (PasswordAccount?.value !== confirmPassword.value) {
+      return { passwordMismatch: true };
+    }
+    return null;
   }
   get firstname() {
     return this.addStudentForm.get('firstname');
@@ -88,63 +98,38 @@ export class AddStudentComponent {
     return this.addStudentForm.get('PasswordAccount');
   }
 
+  get confirmPassword() {
+    return this.addStudentForm.get('confirmPassword');
+  }
+
   get email() {
     return this.addStudentForm.get('email');
   }
-  addStudent(student : Student){
-   console.log(student);
-      this.studentService.addStudent(student).subscribe(students => {
-        this.toastr.success('Student added successfully');
-      },error => {
-        this.toastr.error('error');
-        console.log(error);
-      });
+  addStudent(student: Student) {
+    console.log(student);
+    this.studentService.addStudent(student).subscribe(students => {
+      this.toastr.success('Student added successfully');
+    }, error => {
+      this.toastr.error('error');
+      console.log(error);
+    });
   }
   onSubmit(): any {
     this.formData = this.addStudentForm.value;
-    let student : Student;
+    let student: Student;
     student = {
-      cne : this.formData?.codeApogee,
-      firstname : this.formData?.firstname,
-      lastname : this.formData?.lastname,
-      phone : this.formData?.mobileNumber,
-      email : this.formData?.email,
-      gender : this.formData?.gender=='Male' ? 'HOMME': 'FEMME',
-      password : this.formData?.PasswordAccount,
-      date_of_birth : "1999-08-17"
+      cne: this.formData?.codeApogee,
+      firstname: this.formData?.firstname,
+      lastname: this.formData?.lastname,
+      phone: this.formData?.mobileNumber,
+      email: this.formData?.email,
+      gender: this.formData?.gender == 'Male' ? 'MALE' : 'FEMALE',
+      password: this.formData?.PasswordAccount,
+      date_of_birth: this.formData?.dob
     }
-   
+
     console.log(student);
-    let x= this.addStudent(student);
+    let x = this.addStudent(student);
     console.log(x);
   }
-
-  /*
-   PasswordAccount
-: 
-"dkkdkddkd"
-codeApogee
-: 
-"kkdkdkd"
-dob
-: 
-"2023-04-06"
-email
-: 
-"abderazaknfissi34@gmail.com"
-firstname
-: 
-"abderrazzak"
-gender
-: 
-"Male"
-lastname
-: 
-"nfissi"
-mobileNumber
-: 
-"0611461930"
-
-  */
-  
 }

@@ -1,6 +1,6 @@
-export interface Student {
+export interface Teacher {
   id?: number,
-  cne: string,
+  matricule: string,
   firstname: string,
   lastname: string,
   phone: string,
@@ -8,5 +8,6 @@ export interface Student {
   gender: string,
   image_url?: string,
   date_of_birth?: string,
+  // joining_date?: string,
   password: string
 }
