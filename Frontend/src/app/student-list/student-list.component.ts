@@ -14,7 +14,9 @@ import { SearchService } from '../search.service';
 export class StudentListComponent implements OnInit {
   students: any;
   constructor(private studentsServices: StudentService
-    , private toastr: ToastrService, public searchService: SearchService) { }
+    , private toastr: ToastrService, public searchService: SearchService) {
+    console.log(localStorage.getItem('accessToken'));
+  }
 
   ngOnInit(): void {
     this.studentsServices.getStudents().subscribe((data) => {
