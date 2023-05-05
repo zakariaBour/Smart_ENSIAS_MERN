@@ -31,6 +31,8 @@ import { ExamComponent } from './exam/exam.component';
 import { EventsComponent } from './events/events.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { HolidayService } from './services/holiday.service';
+import { SearchHolidaysPipe } from './search-holidays.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -75,7 +77,8 @@ const routes: Routes = [
     HolidayComponent,
     AddHolidayComponent,
     ExamComponent,
-    EventsComponent
+    EventsComponent,
+    SearchHolidaysPipe
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ const routes: Routes = [
   ],
   providers: [
     StudentService,
-    TeacherService
+    TeacherService,
+    HolidayService
   ],
   bootstrap: [AppComponent]
 })

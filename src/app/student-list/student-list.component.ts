@@ -3,7 +3,6 @@ import { Student } from '../models/student';
 import { ToastrService } from 'ngx-toastr';
 import { StudentService } from '../services/student.service';
 import { saveAs } from 'file-saver';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { SearchService } from '../search.service';
 @Component({
   selector: 'app-student-list',
@@ -16,12 +15,13 @@ export class StudentListComponent implements OnInit {
   constructor(private studentsServices: StudentService
     , private toastr: ToastrService, public searchService: SearchService) {
     console.log(localStorage.getItem('accessToken'));
+    console.log(this.studentsServices.getStudents().subscribe((data) => { console.log(data) }))
   }
 
   ngOnInit(): void {
     this.studentsServices.getStudents().subscribe((data) => {
       this.students = data;
-      console.log(this.searchService.searchText)
+      console.log(this.searchService.searchText);
     })
   }
 
@@ -60,9 +60,5 @@ export class StudentListComponent implements OnInit {
     });
     return [headers.join(','), ...rows].join('\n');
   }
-
-
-
-
 
 }

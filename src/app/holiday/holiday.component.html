@@ -3,7 +3,7 @@
 
 <div class="page-wrapper">
     <div class="content container-fluid">
-    
+
     <div class="page-header">
     <div class="row align-items-center">
     <div class="col">
@@ -14,12 +14,12 @@
     </ul>
     </div>
     <div class="col-auto text-right float-right ml-auto">
-    <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+    <a (click)="downloadStudents()" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
     <a routerLink="/holiday/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
     </div>
     </div>
     </div>
-    
+
     <div class="row">
     <div class="col-sm-12">
     <div class="card card-table">
@@ -28,101 +28,22 @@
     <table class="table table-hover table-center mb-0 datatable">
     <thead>
     <tr>
-   
-    <th>Holiday Name</th>
+    <th>Holiday Title</th>
     <th>Type</th>
     <th>Start Date</th>
     <th>End Date</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-    
+    <tr *ngFor="let holiday of holidays | searchHolidays:searchService.searchText" >
     <td>
     <h2>
-    <a>Sports Day</a>
+    <a>{{holiday.title}}</a>
     </h2>
     </td>
-    <td>College Holiday</td>
-    <td>17 Aug 2020</td>
-    <td>19 Aug 2020</td>
-    </tr>
-    <tr>
-  
-    <td>
-    <h2>
-    <a>Memorial Day</a>
-    </h2>
-    </td>
-    <td>Public Holiday</td>
-    <td>05 Aug 2020</td>
-    <td>06 Aug 2020</td>
-    </tr>
-    <tr>
-
-    <td>
-    <h2>
-    <a>Annual Day</a>
-    </h2>
-    </td>
-    <td>College Holiday</td>
-    <td>04 Sept 2020</td>
-    <td>07 Sept 2020</td>
-    </tr>
-    <tr>
-  
-    <td>
-    <h2>
-    <a>Exam Holiday</a>
-    </h2>
-    </td>
-    <td>Semester leave</td>
-    <td>17 Sept 2020</td>
-    <td>30 Sept 2020</td>
-    </tr>
-    <tr>
-
-    <td>
-    <h2>
-    <a>Sports Day</a>
-    </h2>
-    </td>
-    <td>College Holiday</td>
-    <td>17 Aug 2020</td>
-    <td>19 Aug 2020</td>
-    </tr>
-    <tr>
-   
-    <td>
-    <h2>
-    <a>Memorial Day</a>
-    </h2>
-    </td>
-    <td>Public Holiday</td>
-    <td>05 Aug 2020</td>
-    <td>06 Aug 2020</td>
-    </tr>
-    <tr>
-
-    <td>
-    <h2>
-    <a>Annual Day</a>
-    </h2>
-    </td>
-    <td>College Holiday</td>
-    <td>04 Sept 2020</td>
-    <td>07 Sept 2020</td>
-    </tr>
-    <tr>
- 
-    <td>
-    <h2>
-    <a>Exam Holiday</a>
-    </h2>
-    </td>
-    <td>Semester leave</td>
-    <td>17 Sept 2020</td>
-    <td>30 Sept 2020</td>
+    <td>{{holiday.type}}</td>
+    <td>{{holiday.start_date}}</td>
+    <td>{{holiday.end_date}}</td>
     </tr>
     </tbody>
     </table>
@@ -132,10 +53,9 @@
     </div>
     </div>
     </div>
-    
+
     <footer>
     <p>Copyright © 2023 SMART ENSIAS.</p>
     </footer>
-    
+
     </div>
-    

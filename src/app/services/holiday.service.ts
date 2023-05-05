@@ -10,33 +10,25 @@ const httpOptions = {
     }
   )
 };
-
-
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
+export class HolidayService {
 
-
-  readonly apiUrl = 'http://localhost:8080';
-  readonly endPointStudents = '/students'
+  readonly apiUrl = 'http://localhost:8080/api/v1/holiday';
+  readonly endPointStudents = '/all'
   constructor(private http: HttpClient) { }
-  getStudents() {
+  getHolidays() {
     return this.http.get(this.apiUrl + this.endPointStudents, httpOptions);
   }
-  deleteStudent(cne: string) {
-    return this.http.delete(this.apiUrl + this.endPointStudents + "/" + cne, httpOptions);
-  }
-  addStudent(student: any): Observable<any> {
-    let addStudentUrl = this.apiUrl + "/api/v1/auth/register/student";
-    return this.http.post<any>(addStudentUrl, student, httpOptions).pipe(
+  addHoliday(holiday: any): Observable<any> {
+    let addHolidayUrl = this.apiUrl + "/create";
+    return this.http.post<any>(addHolidayUrl, holiday, httpOptions).pipe(
       map(response => {
         console.log(response)
       })
     );
     ;
   }
-  findStudentByCne(cne: string) {
-    return this.http.get(this.apiUrl + this.endPointStudents + "/" + cne, httpOptions);
-  }
+
 }
