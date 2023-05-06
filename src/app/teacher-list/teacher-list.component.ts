@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-teacher-list',
   templateUrl: './teacher-list.component.html',
   styleUrls: ['./teacher-list.component.css']
 })
-export class TeacherListComponent {
+export class TeacherListComponent implements OnInit {
+  role : string = "admin";
   teachers = [
     {
       "CIN": "ZT277932",
@@ -59,6 +60,13 @@ export class TeacherListComponent {
     }
   ];
    constructor(){
-    console.log(this.teachers);
+    
    }
+  ngOnInit(): void {
+     this.getCurrentUserRole();
+  }
+
+  getCurrentUserRole(){
+    this.role = "Student";
+  }
 }

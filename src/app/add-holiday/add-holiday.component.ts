@@ -50,12 +50,12 @@ export class AddHolidayComponent {
     return this.addHolidayForm.get('end_date');
   }
   addHoliday(holiday: Holiday) {
-    console.log(holiday);
+    
     this.holidayService.addHoliday(holiday).subscribe(holidays => {
       this.toastr.success('Holiday added successfully');
     }, error => {
       this.toastr.error('error');
-      console.log(error);
+     
     });
   }
   onSubmit(): any {
@@ -68,8 +68,8 @@ export class AddHolidayComponent {
       end_date: this.formData?.end_date,
     }
 
-    console.log(holiday);
+   
     let x = this.addHoliday(holiday);
-    console.log(x);
+   
   }
 }

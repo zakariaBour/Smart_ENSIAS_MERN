@@ -10,7 +10,13 @@ const httpOptions = {
     }
   )
 };
-
+const httpOptions2 = {
+  headers: new HttpHeaders(
+    {
+      'Content-Type': 'application/json',
+    }
+  )
+};
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +35,9 @@ export class StudentService {
   }
   addStudent(student: any): Observable<any> {
     let addStudentUrl = this.apiUrl + "/api/v1/auth/register/student";
-    return this.http.post<any>(addStudentUrl, student, httpOptions).pipe(
+    return this.http.post<any>(addStudentUrl, student, httpOptions2).pipe(
       map(response => {
-        console.log(response)
+      
       })
     );
     ;
@@ -39,4 +45,5 @@ export class StudentService {
   findStudentByCne(cne: string) {
     return this.http.get(this.apiUrl + this.endPointStudents + "/" + cne, httpOptions);
   }
+  
 }

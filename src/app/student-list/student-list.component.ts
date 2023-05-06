@@ -15,7 +15,6 @@ export class StudentListComponent implements OnInit {
   role: string = "Student";
   constructor(private studentsServices: StudentService
     , private toastr: ToastrService, public searchService: SearchService) {
-
     this.studentsServices.getStudents().subscribe((data) => { console.log(data) });
   }
 

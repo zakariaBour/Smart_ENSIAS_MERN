@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CalendarEvent, CalendarEventTitleFormatter } from 'angular-calendar';
 import { WeekViewHourSegment } from 'calendar-utils';
 import { addDays, addMinutes, endOfWeek } from 'date-fns';
@@ -22,9 +23,9 @@ function ceilToNearest(amount: number, precision: number) {
 
 
 @Component({
-  selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css'],
+  selector: 'app-add-event',
+  templateUrl: './add-event.component.html',
+  styleUrls: ['./add-event.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
@@ -36,20 +37,26 @@ function ceilToNearest(amount: number, precision: number) {
 
 
 
-export class EventsComponent implements OnInit {
+export class AddEventComponent implements OnInit {
+  isAddEvent : boolean = false;
   viewDate = new Date();
   weekStartsOn: 0 = 0;
   dragToCreateActive = false;
   events: CalendarEvent[] = [];
   days: any[] = [];
   slots: any[] = [];
-  constructor(private cdr: ChangeDetectorRef) {}
-
+  constructor(private cdr: ChangeDetectorRef,private route : ActivatedRoute) {}
   ngOnInit(): void {
     this.initDays();
+    this.isAdd_Event();
+  }
+  isAdd_Event(){
+   
+    
+   
   }
   display(){
-    
+   
   }
 
   initDays() {
