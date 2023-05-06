@@ -106,7 +106,6 @@ export class EditStudentComponent implements OnInit{
     this.current_cne = this.route.snapshot.paramMap.get('cne');
     this.studentService.findStudentByCne(this.current_cne).subscribe(student=>{
       this.currentStudent = student;
-      console.log(this.currentStudent);
       /*
         attendances
 : 
@@ -164,7 +163,6 @@ username
         this.toastr.success('Student added successfully');
       },error => {
         this.toastr.error('error');
-        console.log(error);
       });
   }
   onSubmit(): any {
@@ -180,8 +178,6 @@ username
       password : this.formData?.PasswordAccount
     }
     //addStudent();
-    console.log(this.formData);
-    console.log(student);
     this.addStudent(student);
   }
   

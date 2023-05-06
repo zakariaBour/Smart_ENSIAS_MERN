@@ -115,12 +115,10 @@ export class AddTeacherComponent {
     return this.addTeacherForm.get('email');
   }
   addTeacher(teacher: Teacher) {
-    console.log(teacher);
     this.teacherService.addTeacher(teacher).subscribe((teachers: any) => {
       this.toastr.success('Teacher added successfully');
     }, (error: any) => {
       this.toastr.error('error');
-      console.log(error);
     });
   }
   onSubmit(): any {
@@ -135,11 +133,8 @@ export class AddTeacherComponent {
       gender: this.formData?.gender == 'Male' ? 'MALE' : 'FEMALE',
       password: this.formData?.PasswordAccount,
       date_of_birth: this.formData?.dob,
-      // joining_date: this.formData?.jod
+      joining_date : "1999-09-17"
     }
-
-    console.log(teacher);
     let x = this.addTeacher(teacher);
-    console.log(x);
   }
 }

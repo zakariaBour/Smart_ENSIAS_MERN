@@ -27,6 +27,7 @@ export class NavbarComponent {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('role');
+    localStorage.removeItem('id');
     this.loginService.isLoggedIn = false;
     this.router.navigate(['/login']);
   }
@@ -34,9 +35,9 @@ export class NavbarComponent {
   getUserById(id : any){
    this.userService.getUserById(id).subscribe(user=>{
       this.user = user;
-      console.log(user);
+      
    },error=>{
-    console.log('error');
+
    }
    );
   }

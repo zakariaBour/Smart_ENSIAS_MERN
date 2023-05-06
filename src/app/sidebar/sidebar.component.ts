@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SidebarComponent implements OnInit{
   showOptions: boolean[] = new Array(100).fill(false);
   currentPath: any;
+  role : string = "student";
    constructor(private route: ActivatedRoute){
     
    }
@@ -18,6 +19,11 @@ export class SidebarComponent implements OnInit{
    }
   ngOnInit(): void {
     this.currentPath = this.route.snapshot.url.join('/');
+    this.getCurrentUserRole();
+  }
+  getCurrentUserRole(){
+    //le code a changer après
+   this.role = "admin";
   }
 }
 
