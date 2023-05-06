@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar></app-navbar> 
 <app-sidebar></app-sidebar>
 <div class="page-wrapper">
   <div class="content container-fluid">
@@ -40,7 +40,7 @@
          <td>
           <h2 class="table-avatar">
               <a href="student-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
-              <a href="student-details.html"> {{student.firstname}} {{ student.lastname }}</a>
+              <a href="student-details.html"> {{student?.firstname}} {{ student?.lastname }}</a>
           </h2>
          </td>
          <td>{{student.gender}}</td>

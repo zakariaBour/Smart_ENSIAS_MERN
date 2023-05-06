@@ -43,9 +43,7 @@ export class LoginService {
         localStorage.setItem('accessToken', response.accessToken);
         localStorage.setItem('refreshToken', response.refreshToken);
         localStorage.setItem('role',response.role);
-        //localStorage.setItem('id',response.id);
-        console.log(localStorage.getItem('accessToken'));
-       
+        localStorage.setItem('id',response.id);
       })
     );
   }
