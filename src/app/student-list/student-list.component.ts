@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Student } from '../models/student';
 import { ToastrService } from 'ngx-toastr';
 import { StudentService } from '../services/student.service';
 import { saveAs } from 'file-saver';
 import { SearchService } from '../search.service';
+import { Student } from '../models/student';
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
@@ -12,19 +12,25 @@ import { SearchService } from '../search.service';
 })
 export class StudentListComponent implements OnInit {
   students: any;
+  role: string = "Student";
   constructor(private studentsServices: StudentService
     , private toastr: ToastrService, public searchService: SearchService) {
-    console.log(localStorage.getItem('accessToken'));
-    console.log(this.studentsServices.getStudents().subscribe((data) => { console.log(data) }))
+
+    this.studentsServices.getStudents().subscribe((data) => { console.log(data) });
   }
 
   ngOnInit(): void {
     this.studentsServices.getStudents().subscribe((data) => {
       this.students = data;
-      console.log(this.searchService.searchText);
+
     })
+    this.getCurrentUserRole();
   }
 
+  getCurrentUserRole() {
+    //le code a ajouter après
+    this.role = "Student";
+  }
 
   deleteStudent(cne: string) {
     this.studentsServices.deleteStudent(cne).subscribe(() => {
@@ -32,7 +38,6 @@ export class StudentListComponent implements OnInit {
       this.getStudents();
     }, error => {
       this.toastr.error("Failed to delete student");
-      console.log(error);
     });
   }
 
@@ -55,7 +60,7 @@ export class StudentListComponent implements OnInit {
   generateCsvData(students: Student[]): string {
     const headers = ['ID', 'CNE', 'First Name', 'Last Name', 'Phone', 'Email', 'Gender', 'Image URL', 'Date of Birth', 'Password'];
     const rows = students.map(student => {
-      const row = [student.id, student.cne, student.firstname, student.lastname, student.phone, student.email, student.gender, student.image_url, student.date_of_birth, student.password];
+      const row = [student.id, student.cne, student.first_name, student.last_name, student.phone, student.email, student.genre, student.image_url, student.date_of_birth, student.password];
       return row.join(',');
     });
     return [headers.join(','), ...rows].join('\n');
