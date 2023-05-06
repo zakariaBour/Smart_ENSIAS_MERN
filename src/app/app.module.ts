@@ -14,7 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AddTeacherComponent } from './add-teacher/add-teacher.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +31,7 @@ import { ExamComponent } from './exam/exam.component';
 import { EventsComponent } from './events/events.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
