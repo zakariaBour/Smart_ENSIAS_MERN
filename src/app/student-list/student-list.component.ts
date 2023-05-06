@@ -15,14 +15,14 @@ export class StudentListComponent implements OnInit {
   role : string = "Student";
   constructor(private studentsServices: StudentService
     , private toastr: ToastrService, public searchService: SearchService) {
-    console.log(localStorage.getItem('accessToken'));
-    console.log(this.studentsServices.getStudents().subscribe((data) => { console.log(data) }))
+    
+    this.studentsServices.getStudents().subscribe((data) => { console.log(data) });
   }
 
   ngOnInit(): void {
     this.studentsServices.getStudents().subscribe((data) => {
       this.students = data;
-      console.log(this.searchService.searchText);
+     
     })
     this.getCurrentUserRole();
   }
@@ -38,7 +38,6 @@ export class StudentListComponent implements OnInit {
       this.getStudents();
     }, error => {
       this.toastr.error("Failed to delete student");
-      console.log(error);
     });
   }
 

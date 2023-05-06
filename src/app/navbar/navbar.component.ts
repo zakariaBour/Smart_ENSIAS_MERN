@@ -35,9 +35,9 @@ export class NavbarComponent {
   getUserById(id : any){
    this.userService.getUserById(id).subscribe(user=>{
       this.user = user;
-      console.log(user);
+      
    },error=>{
-    console.log('error');
+
    }
    );
   }

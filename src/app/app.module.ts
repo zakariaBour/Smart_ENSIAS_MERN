@@ -34,7 +34,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HolidayService } from './services/holiday.service';
 import { SearchHolidaysPipe } from './search-holidays.pipe';
 import { AuthGuard } from './auth.guard';
-
+import { AddEventComponent } from './add-event/add-event.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -55,11 +55,12 @@ const routes: Routes = [
   { path: 'holiday', component: HolidayComponent },
   { path: 'exams', component: ExamComponent },
   { path: 'events', component: EventsComponent },
-
+  { path: 'addevents', component: EventsComponent }
 ];
 
 @NgModule({
   declarations: [
+    AddEventComponent,
     AppComponent,
     NavbarComponent,
     SidebarComponent,
@@ -80,7 +81,7 @@ const routes: Routes = [
     AddHolidayComponent,
     ExamComponent,
     EventsComponent,
-    SearchHolidaysPipe
+    SearchHolidaysPipe,
   ],
   imports: [
     BrowserModule,

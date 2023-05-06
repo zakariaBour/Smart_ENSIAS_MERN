@@ -106,12 +106,12 @@ export class AddStudentComponent {
     return this.addStudentForm.get('email');
   }
   addStudent(student: Student) {
-    console.log(student);
+  
     this.studentService.addStudent(student).subscribe(students => {
       this.toastr.success('Student added successfully');
     }, error => {
       this.toastr.error('error');
-      console.log(error);
+     
     });
   }
   onSubmit(): any {
@@ -127,9 +127,6 @@ export class AddStudentComponent {
       password: this.formData?.PasswordAccount,
       date_of_birth: this.formData?.dob
     }
-
-    console.log(student);
     let x = this.addStudent(student);
-    console.log(x);
   }
 }

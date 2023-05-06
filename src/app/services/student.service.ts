@@ -37,7 +37,7 @@ export class StudentService {
     let addStudentUrl = this.apiUrl + "/api/v1/auth/register/student";
     return this.http.post<any>(addStudentUrl, student, httpOptions2).pipe(
       map(response => {
-        console.log(response)
+      
       })
     );
     ;

@@ -60,7 +60,7 @@ export class TeacherListComponent implements OnInit {
     }
   ];
    constructor(){
-    console.log(this.teachers);
+    
    }
   ngOnInit(): void {
      this.getCurrentUserRole();
