@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit{
   }
   getCurrentUserRole(){
     //le code a changer après
-   this.role = "student";
+   this.role = "admin";
   }
 }
 
