@@ -33,6 +33,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HolidayService } from './services/holiday.service';
 import { SearchHolidaysPipe } from './search-holidays.pipe';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -40,17 +41,17 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'studentdetails', component: StudentListComponent },
-  { path: 'Addstudent', component: AddStudentComponent },
+  { path: 'Addstudent', component: AddStudentComponent,canActivate : [AuthGuard],data: { allowedRoles: ['admin'] }  },
   { path: 'teachers', component: TeacherListComponent },
-  { path: 'addTeacher', component: AddTeacherComponent },
-  { path: 'editStudent/:cne', component: EditStudentComponent },
+  { path: 'addTeacher', component: AddTeacherComponent ,canActivate :[AuthGuard],data: { allowedRoles: ['admin'] } },
+  { path: 'editStudent/:cne', component: EditStudentComponent, canActivate:[AuthGuard] , data: { allowedRoles: ['admin'] }},
   { path: 'attendance', component: StudentAttendanceComponent },
   { path: 'teachers', component: TeacherListComponent },
-  { path: 'addTeacher', component: AddTeacherComponent },
-  { path: 'editStudent/:cne', component: EditStudentComponent },
+  { path: 'addTeacher', component: AddTeacherComponent ,canActivate:[AuthGuard] , data: { allowedRoles: ['admin'] } },
+  { path: 'editStudent/:cne', component: EditStudentComponent,canActivate:[AuthGuard] , data: { allowedRoles: ['admin'] } },
   { path: 'attendance/students', component: StudentAttendanceComponent },
   { path: 'attendance/teachers', component: TeacherAttendanceComponent },
-  { path: 'holiday/add', component: AddHolidayComponent },
+  { path: 'holiday/add', component: AddHolidayComponent ,canActivate:[AuthGuard] , data: { allowedRoles: ['admin'] }},
   { path: 'holiday', component: HolidayComponent },
   { path: 'exams', component: ExamComponent },
   { path: 'events', component: EventsComponent },
@@ -102,7 +103,8 @@ const routes: Routes = [
   providers: [
     StudentService,
     TeacherService,
-    HolidayService
+    HolidayService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

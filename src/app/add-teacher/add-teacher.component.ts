@@ -135,11 +135,10 @@ export class AddTeacherComponent {
       gender: this.formData?.gender == 'Male' ? 'MALE' : 'FEMALE',
       password: this.formData?.PasswordAccount,
       date_of_birth: this.formData?.dob,
-      // joining_date: this.formData?.jod
+      joining_date : "1999-09-17"
     }
 
     console.log(teacher);
     let x = this.addTeacher(teacher);
-    console.log(x);
   }
 }

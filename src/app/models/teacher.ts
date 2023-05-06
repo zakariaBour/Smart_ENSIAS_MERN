@@ -8,6 +8,6 @@ export interface Teacher {
   gender: string,
   image_url?: string,
   date_of_birth?: string,
-  // joining_date?: string,
+  joining_date?: string,
   password: string
 }

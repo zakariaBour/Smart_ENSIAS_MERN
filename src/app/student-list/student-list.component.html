@@ -13,7 +13,7 @@
            </div>
            <div class="col-auto text-right float-right ml-auto">
               <a (click)="downloadStudents()" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-              <a routerLink="/Addstudent" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+              <a *ngIf="role=='admin'" routerLink="/Addstudent" class="btn btn-primary"><i class="fas fa-plus"></i></a>
            </div>
         </div>
      </div>
@@ -31,7 +31,7 @@
       <th>Class</th>
       <th>Mobile Number</th>
       <th>Email</th>
-      <th class="text-right">Action</th>
+      <th *ngIf="role=='admin'" class="text-right">Action</th>
       </tr>
       </thead>
       <tbody>
@@ -40,14 +40,14 @@
          <td>
           <h2 class="table-avatar">
               <a href="student-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
-              <a href="student-details.html"> {{student?.firstname}} {{ student?.lastname }}</a>
+              <a href="student-details.html"> {{student?.first_name}} {{ student?.last_name }}</a>
           </h2>
          </td>
-         <td>{{student.gender}}</td>
+         <td>{{student.genre}}</td>
          <td>0</td>
          <td>{{student.phone}}</td>
          <td>{{student.email}}</td>
-         <td class="text-right">
+         <td class="text-right" *ngIf="role=='admin'">
           <div class="actions">
           <a [routerLink]="['/editStudent',student.cne]"  class="btn btn-sm bg-success-light mr-2">
           <i class="fas fa-pen"></i>
