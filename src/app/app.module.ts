@@ -35,27 +35,33 @@ import { HolidayService } from './services/holiday.service';
 import { SearchHolidaysPipe } from './search-holidays.pipe';
 import { AuthGuard } from './auth.guard';
 import { AddEventComponent } from './add-event/add-event.component';
+import { AddBranchComponent } from './add-branch/add-branch.component';
+import { BranchListComponent } from './branch-list/branch-list.component';
+import { BranchService } from './services/branch.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'studentdetails', component: StudentListComponent },
-  { path: 'Addstudent', component: AddStudentComponent,canActivate : [AuthGuard],data: { allowedRoles: ['admin'] }  },
+  { path: 'Addstudent', component: AddStudentComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'teachers', component: TeacherListComponent },
-  { path: 'addTeacher', component: AddTeacherComponent ,canActivate :[AuthGuard],data: { allowedRoles: ['admin'] } },
-  { path: 'editStudent/:cne', component: EditStudentComponent, canActivate:[AuthGuard] , data: { allowedRoles: ['admin'] }},
+  { path: 'addTeacher', component: AddTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'editStudent/:cne', component: EditStudentComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance', component: StudentAttendanceComponent },
   { path: 'teachers', component: TeacherListComponent },
-  { path: 'addTeacher', component: AddTeacherComponent ,canActivate:[AuthGuard] , data: { allowedRoles: ['admin'] } },
-  { path: 'editStudent/:cne', component: EditStudentComponent,canActivate:[AuthGuard] , data: { allowedRoles: ['admin'] } },
+  { path: 'addTeacher', component: AddTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'editStudent/:cne', component: EditStudentComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance/students', component: StudentAttendanceComponent },
   { path: 'attendance/teachers', component: TeacherAttendanceComponent },
-  { path: 'holiday/add', component: AddHolidayComponent ,canActivate:[AuthGuard] , data: { allowedRoles: ['admin'] }},
+  { path: 'holiday/add', component: AddHolidayComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'holiday', component: HolidayComponent },
   { path: 'exams', component: ExamComponent },
   { path: 'events', component: EventsComponent },
-  { path: 'addevents', component: EventsComponent }
+  { path: 'addevents', component: EventsComponent },
+  { path: 'branchs', component: BranchListComponent },
+  { path: 'branchs/add', component: AddBranchComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } }
+
 ];
 
 @NgModule({
@@ -82,6 +88,8 @@ const routes: Routes = [
     ExamComponent,
     EventsComponent,
     SearchHolidaysPipe,
+    AddBranchComponent,
+    BranchListComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,7 +113,8 @@ const routes: Routes = [
     StudentService,
     TeacherService,
     HolidayService,
-    AuthGuard
+    AuthGuard,
+    BranchService
   ],
   bootstrap: [AppComponent]
 })

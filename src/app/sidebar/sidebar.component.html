@@ -20,13 +20,13 @@
                  [ngClass]="{'active': currentPath=='studentdetails'}"
                  ><a routerLink="/studentdetails">Student List</a>
                  </li>
-                  
+
                    <li *ngIf="showOptions[0]" style="padding-left: 10%;"
                    [ngClass]="{'active': currentPath=='Addstudent'}"
                    >
-                   <a *ngIf="role=='admin'" routerLink="/Addstudent">Student Add</a></li>  
+                   <a *ngIf="role=='admin'" routerLink="/Addstudent">Student Add</a></li>
                    <li>
-                     
+
                   <a (click)="change(1)" style="cursor: pointer;">
                      <i class="fas fa-user-tie"></i> <span> Teachers </span> <span class="menu-arrow"></span>
                    </a>
@@ -42,20 +42,26 @@
                         <a (click)="change(2)">
                                  <i class="fas fa-book-open"></i> <span> Subjects </span> <span class="menu-arrow"></span>
                         </a>
-                </li>          
+                </li>
                     <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/teachers">Subjects List</a></li>
                     <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/addTeacher" *ngIf="role=='admin'">Subjects Add</a></li>
-                                   
-                 <li style="cursor: pointer;">         
-                  <a  (click)="change(3)">
+         <li style="cursor: pointer;">
+          <a (click)="change(3)">
+                   <i class="fas fa-book-open"></i> <span> Branches </span> <span class="menu-arrow"></span>
+          </a>
+  </li>
+      <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/branchs">Branches List</a></li>
+      <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/branchs/add" *ngIf="role=='admin'">Branches Add</a></li>
+                 <li style="cursor: pointer;">
+                  <a  (click)="change(4)">
                      <i class="fas fa-calendar-alt"></i> <span> Attendance </span> <span class="menu-arrow"></span>
                   </a>
-                </li>         
-                        <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/attendance/teachers">Teachers attendance</a></li>
-                        <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/attendance/students">Students attendance</a></li>
-               
-                                     
-                               
+                </li>
+                        <li *ngIf="showOptions[4]" style="padding-left: 10%;"><a routerLink="/attendance/teachers">Teachers attendance</a></li>
+                        <li *ngIf="showOptions[4]" style="padding-left: 10%;"><a routerLink="/attendance/students">Students attendance</a></li>
+
+
+
             <li class="menu-title" style="cursor: pointer;">
                <span>Management</span>
             </li>
@@ -69,7 +75,7 @@
             <li style="cursor: pointer;">
                <a routerLink="/events"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
             </li>
-          
+
          </ul>
       </div>
    </div>

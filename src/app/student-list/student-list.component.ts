@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Student } from '../models/student';
 import { ToastrService } from 'ngx-toastr';
 import { StudentService } from '../services/student.service';
 import { saveAs } from 'file-saver';
 import { SearchService } from '../search.service';
-import { Student } from '../models/student';
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
@@ -15,6 +15,7 @@ export class StudentListComponent implements OnInit {
   role: string = "Student";
   constructor(private studentsServices: StudentService
     , private toastr: ToastrService, public searchService: SearchService) {
+
     this.studentsServices.getStudents().subscribe((data) => { console.log(data) });
   }
 
