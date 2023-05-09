@@ -2,7 +2,7 @@
 <app-sidebar></app-sidebar>
 <div class="page-wrapper">
     <div class="content container-fluid">
-    
+
     <div class="page-header">
     <div class="row align-items-center">
     <div class="col">
@@ -18,7 +18,7 @@
     </div>
     </div>
     </div>
-    
+
     <div class="row">
     <div class="col-sm-12">
     <div class="card card-table">
@@ -39,7 +39,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let teacher of teachers;let index = index">
+    <tr *ngFor="let teacher of teachers | searchTeachers: searchService.searchText;let index = index">
        <td>{{teacher.matricule}}</td>
        <td>
         <h2 class="table-avatar">
@@ -52,20 +52,21 @@
        <td>{{teacher.joining_date}}</td>
        <td>{{teacher.date_of_birth}}</td>
        <td>{{teacher.phone}}</td>
-       <td>{{teacher.email}}</td> 
+       <td>{{teacher.email}}</td>
        <td *ngIf="role=='ADMIN'" class="text-right">
         <div class="actions">
         <a routerLink="/editTeacher/{{teacher.id}}" class="btn btn-sm bg-success-light mr-2">
         <i class="fas fa-pen"></i>
         </a>
-        <a (click)="deleteTeacher(teacher.id)" class="btn btn-sm bg-danger-light">
+        <!-- (click)="deleteTeacher(teacher.id)" -->
+        <a  class="btn btn-sm bg-danger-light">
         <i class="fas fa-trash"></i>
         </a>
         </div>
         </td>
     </tr>
-   
-   
+
+
     </tbody>
     </table>
     </div>
