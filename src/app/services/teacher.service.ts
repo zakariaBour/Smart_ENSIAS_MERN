@@ -30,6 +30,16 @@ export class TeacherService {
     ;
   }
 
+  updateTeacher(teacher: any): Observable<any> {
+    let addTeacherUrl = this.apiUrl + "/api/v1/teacher/60";
+    return this.http.patch<any>(addTeacherUrl, teacher, this.httpOptions).pipe(
+      map(response => {
+        console.log(response)
+      })
+    );
+    ;
+  }
+
   getTeachers() {
     return this.http.get(this.apiUrl +"/api/v1/teacher/all" , this.httpOptions);
   }
@@ -37,7 +47,7 @@ export class TeacherService {
     return this.http.delete(this.apiUrl  +"/api/v1/teacher/"+id,this.httpOptions);
   }
  
-  findTeacherByCne(cne: string) {
-    //return this.http.get(this.apiUrl + this.endPointStudents + "/" + cne, httpOptions);
+  findTeacherById(id: string) {
+    return this.http.get(this.apiUrl  + "/api/v1/teacher/" + id, this.httpOptions);
   }
 }

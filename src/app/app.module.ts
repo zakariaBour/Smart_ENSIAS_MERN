@@ -38,6 +38,7 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { AddBranchComponent } from './add-branch/add-branch.component';
 import { BranchListComponent } from './branch-list/branch-list.component';
 import { BranchService } from './services/branch.service';
+import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path: 'teachers', component: TeacherListComponent },
   { path: 'addTeacher', component: AddTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'editStudent/:cne', component: EditStudentComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'editTeacher/:cne', component: EditTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance', component: StudentAttendanceComponent },
   { path: 'teachers', component: TeacherListComponent },
   { path: 'addTeacher', component: AddTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
@@ -90,6 +92,7 @@ const routes: Routes = [
     SearchHolidaysPipe,
     AddBranchComponent,
     BranchListComponent,
+    EditTeacherComponent,
   ],
   imports: [
     BrowserModule,
