@@ -44,6 +44,7 @@ import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
 import { SearchTeachersPipe } from './pipes/search-teachers.pipe';
 import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -97,12 +98,8 @@ const routes: Routes = [
     SearchHolidaysPipe,
     AddBranchComponent,
     BranchListComponent,
-
     EditTeacherComponent,
-
     SubjectListComponent,
-
-
     AddSubjectComponent,
     SearchTeachersPipe,
     EditTeacherComponent,
