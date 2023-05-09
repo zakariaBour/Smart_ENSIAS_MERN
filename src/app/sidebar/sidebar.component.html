@@ -51,7 +51,7 @@
           </a>
   </li>
       <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/branchs">Branches List</a></li>
-      <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/branchs/add" *ngIf="role=='ADMIN'">Branches Add</a></li>
+      <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/branchs/add" *ngIf="role=='STUDENT'">Branches Add</a></li>
                  <li style="cursor: pointer;">
                   <a  (click)="change(4)">
                      <i class="fas fa-calendar-alt"></i> <span> Attendance </span> <span class="menu-arrow"></span>
