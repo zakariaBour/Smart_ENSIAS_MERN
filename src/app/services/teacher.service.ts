@@ -33,8 +33,8 @@ export class TeacherService {
   getTeachers() {
     return this.http.get(this.apiUrl +"/api/v1/teacher/all" , this.httpOptions);
   }
-  deleteTeacher(cne: string) {
-    return this.http.delete(this.apiUrl  + "/" + cne,this.httpOptions);
+  deleteTeacher(id: string) {
+    return this.http.delete(this.apiUrl  +"/api/v1/teacher/"+id,this.httpOptions);
   }
  
   findTeacherByCne(cne: string) {

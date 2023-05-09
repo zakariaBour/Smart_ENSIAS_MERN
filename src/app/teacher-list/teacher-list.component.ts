@@ -87,12 +87,12 @@ export class TeacherListComponent implements OnInit {
     this.role = localStorage.getItem('role');
   }
 
-  deleteTeacher(cne: string) {
-    this.teachersServices.deleteTeacher(cne).subscribe(() => {
-      this.toastr.success('Student deleted successfully');
+  deleteTeacher(id: string) {
+    this.teachersServices.deleteTeacher(id).subscribe(() => {
+      this.toastr.success('Teacher deleted successfully');
       this.getTeachers();
     }, error => {
-      this.toastr.error("Failed to delete student");
+      this.toastr.error("Failed to delete Teacher");
     });
   }
 

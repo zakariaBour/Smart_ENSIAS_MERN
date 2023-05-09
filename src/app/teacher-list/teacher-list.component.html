@@ -44,7 +44,6 @@
        <td>
         <h2 class="table-avatar">
             <a href="teacher-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
-            <a href="teacher-details.html">Minnie</a>
         </h2>
         {{teacher.firstname}} {{teacher.lastname}}
        </td>
@@ -56,10 +55,10 @@
        <td>{{teacher.email}}</td> 
        <td *ngIf="role=='ADMIN'" class="text-right">
         <div class="actions">
-        <a href="edit-teacher.html" class="btn btn-sm bg-success-light mr-2">
+        <a routerLink="/addTeacher" class="btn btn-sm bg-success-light mr-2">
         <i class="fas fa-pen"></i>
         </a>
-        <a href="#" class="btn btn-sm bg-danger-light">
+        <a (click)="deleteTeacher(teacher.id)" class="btn btn-sm bg-danger-light">
         <i class="fas fa-trash"></i>
         </a>
         </div>
