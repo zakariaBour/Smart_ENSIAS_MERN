@@ -12,22 +12,21 @@ import { SearchService } from '../search.service';
 })
 export class StudentListComponent implements OnInit {
   students: any;
-  role: string = "Student";
+  role : string = "Student";
   constructor(private studentsServices: StudentService
     , private toastr: ToastrService, public searchService: SearchService) {
-
     this.studentsServices.getStudents().subscribe((data) => { console.log(data) });
   }
 
   ngOnInit(): void {
     this.studentsServices.getStudents().subscribe((data) => {
       this.students = data;
-
+     
     })
     this.getCurrentUserRole();
   }
-
-  getCurrentUserRole() {
+  
+  getCurrentUserRole(){
     //le code a ajouter après
     this.role = "Student";
   }

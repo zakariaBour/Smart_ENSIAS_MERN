@@ -9,7 +9,7 @@ export interface Student {
   image_url?: string,
   date_of_birth?: string,
   password: string,
-  gender?: string,
-  firstname?: string,
-  lastname?: string,
+  gender?:string,
+  firstname?:string,
+  lastname?:string,
 }
