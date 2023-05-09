@@ -10,6 +10,64 @@ import { BranchService } from '../services/branch.service';
   providers: [BranchService]
 })
 
-export class AddBranchComponent {
 
+export class AddBranchComponent {
+  formData: any;
+  myBranch: Branch = {
+    code: '',
+    name: '',
+    description: '',
+  }
+  branchs: Branch[] = [];
+  addBranchForm: FormGroup;
+  constructor(private bracnhService: BranchService, private toastr: ToastrService) {
+    this.addBranchForm = new FormGroup({
+      code: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6)
+      ]),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(10)
+      ]),
+    });
+  }
+  get code() {
+    return this.addBranchForm.get('code');
+  }
+  get name() {
+    return this.addBranchForm.get('name');
+  }
+  get description() {
+    return this.addBranchForm.get('description');
+  }
+
+
+  addHoliday(branch: Branch) {
+    console.log(branch);
+    this.bracnhService.addBranch(branch).subscribe(branchs => {
+      this.toastr.success('Branch added successfully');
+    }, error => {
+      this.toastr.error('error');
+      console.log(error);
+    });
+  }
+  onSubmit(): any {
+    this.formData = this.addBranchForm.value;
+    let branch: Branch;
+    branch = {
+      code: this.formData?.code,
+      name: this.formData?.name,
+      description: this.formData?.description,
+    }
+
+
+    console.log(branch);
+    let x = this.addHoliday(branch);
+    console.log(x);
+  }
 }
