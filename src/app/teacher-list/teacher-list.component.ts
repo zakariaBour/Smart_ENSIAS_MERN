@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { TeacherService } from '../services/teacher.service';
+import { ToastrService } from 'ngx-toastr';
+import { SearchService } from '../search.service';
+import { Teacher } from '../models/teacher';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-teacher-list',
@@ -6,8 +11,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teacher-list.component.css']
 })
 export class TeacherListComponent implements OnInit {
-  role : string | any;
-  teachers = [
+  
+  students: any;
+  role: string | any;
+  teachers : any;
+  x = [
     {
       "CIN": "ZT277932",
       "Name": "AHMED ROUBALE",
@@ -59,14 +67,60 @@ export class TeacherListComponent implements OnInit {
       "Email": "yassine.elkabbaj@gmail.com"
     }
   ];
-   constructor(){
-    
-   }
-  ngOnInit(): void {
-     this.getCurrentUserRole();
+  
+
+  
+  constructor(private teachersServices: TeacherService
+    , private toastr: ToastrService, public searchService: SearchService) {
+     this.teachersServices.getTeachers().subscribe((data) => { console.log(data) });
   }
 
+  ngOnInit(): void {
+    this.teachersServices.getTeachers().subscribe((data) => {
+      this.teachers = data;
+    })
+    this.getCurrentUserRole();
+  }
+  
   getCurrentUserRole(){
+    //le code a ajouter après
     this.role = localStorage.getItem('role');
   }
+
+  deleteTeacher(id: string) {
+    this.teachersServices.deleteTeacher(id).subscribe(() => {
+      this.toastr.success('Teacher deleted successfully');
+      this.getTeachers();
+    }, error => {
+      this.toastr.error("Failed to delete Teacher");
+    });
+  }
+
+  getTeachers(): void {
+    this.teachersServices.getTeachers().subscribe(teachers => {
+      this.teachers = teachers;
+      console.log(this.teachers);
+    });
+  }
+
+  downloadTeachers(): void {
+    this.teachersServices.getTeachers().subscribe(teachers => {
+      this.teachers = teachers;
+      const data = this.generateCsvData(this.teachers);
+      const blob = new Blob([data], { type: 'text/csv;charset=utf-8' });
+      saveAs(blob, 'teachers.csv');
+
+    });
+  }
+
+  generateCsvData(teachers: Teacher[]): string {
+    const headers = ['ID', 'CNE', 'First Name', 'Last Name', 'Phone', 'Email', 'Gender', 'Image URL', 'Date of Birth', 'Password'];
+    const rows = teachers.map(teacher => {
+      const row = [teacher.id, teacher.matricule, teacher.firstname, teacher.lastname, teacher.phone, teacher.email, teacher.gender, teacher.image_url, teacher.date_of_birth, teacher.password];
+      return row.join(',');
+    });
+    return [headers.join(','), ...rows].join('\n');
+  }
 }
+   
+ 
