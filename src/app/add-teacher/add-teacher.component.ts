@@ -44,11 +44,10 @@ export class AddTeacherComponent {
         Validators.required,
         //  this.dobValidator
       ]),
-      // jod: new FormControl('', [
-      //   Validators.required,
-      //   //  this.dobValidator
-      // ])
-      // ,
+      jod: new FormControl('', [
+       Validators.required,
+      ])
+      ,
       mobileNumber: new FormControl('', [
         Validators.required,
         Validators.pattern(/^\d{7,}$/)
@@ -92,9 +91,9 @@ export class AddTeacherComponent {
   get dob() {
     return this.addTeacherForm.get('dob');
   }
-  // get jod() {
-  //   return this.addTeacherForm.get('jod');
-  // }
+   get jod() {
+  return this.addTeacherForm.get('jod');
+  }
   get mobileNumber() {
     return this.addTeacherForm.get('mobileNumber');
   }
@@ -133,8 +132,8 @@ export class AddTeacherComponent {
       gender: this.formData?.gender == 'Male' ? 'MALE' : 'FEMALE',
       password: this.formData?.PasswordAccount,
       date_of_birth: this.formData?.dob,
-      joining_date : "1999-09-17"
+      joining_date : this.formData?.jod
     }
-    let x = this.addTeacher(teacher);
+    this.addTeacher(teacher);
   }
 }
