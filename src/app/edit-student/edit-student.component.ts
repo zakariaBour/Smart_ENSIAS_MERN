@@ -106,46 +106,6 @@ export class EditStudentComponent implements OnInit{
     this.current_cne = this.route.snapshot.paramMap.get('cne');
     this.studentService.findStudentByCne(this.current_cne).subscribe(student=>{
       this.currentStudent = student;
-      /*
-        attendances
-: 
-[]
-cne
-: 
-"110200202"
-date_of_birth
-: 
-null
-email
-: 
-"roubale123@gmail.com"
-firstname
-: 
-"Roubale"
-genre
-: 
-"HOMME"
-id
-: 
-1
-image_url
-: 
-null
-lastname
-: 
-"roubale"
-password
-: 
-"10000"
-phone
-: 
-"+234556771"
-username
-: 
-"roubale"
-
-      */
-
       this.addStudentForm = this.fb.group({
         firstname: this.currentStudent.firstname,
         lastname : this.currentStudent.lastname,
