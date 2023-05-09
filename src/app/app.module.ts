@@ -42,6 +42,8 @@ import { SubjectService } from './services/subject.service';
 import { SearchFlterPipe } from './pipes/search-flter.pipe';
 import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
 import { SearchTeachersPipe } from './pipes/search-teachers.pipe';
+import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -52,6 +54,7 @@ const routes: Routes = [
   { path: 'teachers', component: TeacherListComponent },
   { path: 'addTeacher', component: AddTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'editStudent/:cne', component: EditStudentComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'editTeacher/:cne', component: EditTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance', component: StudentAttendanceComponent },
   { path: 'teachers', component: TeacherListComponent },
   { path: 'addTeacher', component: AddTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
@@ -95,9 +98,11 @@ const routes: Routes = [
     SearchHolidaysPipe,
     AddBranchComponent,
     BranchListComponent,
+    EditTeacherComponent,
     SubjectListComponent,
     AddSubjectComponent,
     SearchTeachersPipe,
+    EditTeacherComponent,
   ],
   imports: [
     BrowserModule,
