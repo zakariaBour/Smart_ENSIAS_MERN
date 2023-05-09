@@ -22,8 +22,8 @@ export class BranchService {
     return this.http.get(this.apiUrl, httpOptions);
   }
   addBranch(branch: any): Observable<any> {
-    // let addBranchUrl = this.apiUrl + "/add";
-    return this.http.post<any>('http://localhost:8080/filiere/add', branch, httpOptions).pipe(
+    let addBranchUrl = this.apiUrl + "/add";
+    return this.http.post<any>(addBranchUrl, branch, httpOptions).pipe(
       map(response => {
         console.log(response)
       })
