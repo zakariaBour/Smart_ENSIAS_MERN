@@ -31,8 +31,8 @@
     <th>Name</th>
     <th>Class</th>
     <th>Gender</th>
-    <th>Subject</th>
-    <th>Section</th>
+    <th>joining date</th>
+    <th>date of birth</th>
     <th>Mobile Number</th>
     <th>Email</th>
     <th *ngIf="role=='ADMIN'" class="text-right">Action</th>
@@ -40,20 +40,20 @@
     </thead>
     <tbody>
     <tr *ngFor="let teacher of teachers;let index = index">
-       <td>{{teacher.CIN}}</td>
+       <td>{{teacher.matricule}}</td>
        <td>
         <h2 class="table-avatar">
             <a href="teacher-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
             <a href="teacher-details.html">Minnie</a>
         </h2>
-        {{teacher.Name}}
+        {{teacher.firstname}} {{teacher.lastname}}
        </td>
-       <td>{{teacher.Class}}</td>
-       <td>{{teacher.Gender}}</td>
-       <td>{{teacher.Subject}}</td>
-       <td>{{teacher.Section}}</td>
-       <td>{{teacher['Mobile Number']}}</td>
-       <td>{{teacher.Email}}</td> 
+       <td>??</td>
+       <td>{{teacher.gender}}</td>
+       <td>{{teacher.joining_date}}</td>
+       <td>{{teacher.date_of_birth}}</td>
+       <td>{{teacher.phone}}</td>
+       <td>{{teacher.email}}</td> 
        <td *ngIf="role=='ADMIN'" class="text-right">
         <div class="actions">
         <a href="edit-teacher.html" class="btn btn-sm bg-success-light mr-2">

@@ -11,7 +11,7 @@ export class TeacherService {
   
 
   readonly apiUrl = 'http://localhost:8080';
-  readonly endPointTeachers = '/teachers';
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -28,5 +28,16 @@ export class TeacherService {
       })
     );
     ;
+  }
+
+  getTeachers() {
+    return this.http.get(this.apiUrl +"/api/v1/teacher/all" , this.httpOptions);
+  }
+  deleteTeacher(cne: string) {
+    return this.http.delete(this.apiUrl  + "/" + cne,this.httpOptions);
+  }
+ 
+  findTeacherByCne(cne: string) {
+    //return this.http.get(this.apiUrl + this.endPointStudents + "/" + cne, httpOptions);
   }
 }
