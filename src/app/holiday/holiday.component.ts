@@ -23,7 +23,7 @@ export class HolidayComponent implements OnInit {
       this.holidays = data;
     })
   }
-  getStudents(): void {
+  getHolidays(): void {
     this.holidayService.getHolidays().subscribe(holidays => {
       this.holidays = holidays;
     });
