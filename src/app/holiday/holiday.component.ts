@@ -12,6 +12,14 @@ import { Holiday } from '../models/holiday';
   providers: [HolidayService]
 })
 export class HolidayComponent implements OnInit {
+  deleteHoliday(id: any) {
+    this.holidayService.deleteHoliday(id).subscribe(() => {
+      this.toastr.success('Holiday deleted successfully');
+      this.getHolidays();
+    }, error => {
+      this.toastr.error("Failed to delete holiday");
+    });
+  }
   holidays: any;
   role : any;
   constructor(private holidayService: HolidayService

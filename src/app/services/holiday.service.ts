@@ -30,5 +30,7 @@ export class HolidayService {
     );
     ;
   }
-
+  deleteHoliday(id: string) {
+    return this.http.delete(this.apiUrl + "/" + id, httpOptions);
+  }
 }
