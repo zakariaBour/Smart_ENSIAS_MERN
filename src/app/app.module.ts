@@ -36,9 +36,6 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { AddBranchComponent } from './add-branch/add-branch.component';
 import { BranchListComponent } from './branch-list/branch-list.component';
 import { BranchService } from './services/branch.service';
-
-import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
-
 import { SubjectListComponent } from './subject-list/subject-list.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { SubjectService } from './services/subject.service';
