@@ -16,6 +16,9 @@ const httpOptions = {
 export class SubjectService {
 
   readonly apiUrl = 'http://localhost:8080/course';
+  getSubjects() {
+    return this.http.get(this.apiUrl, httpOptions);
+  }
   constructor(private http: HttpClient) { }
   addSubject(subject: any): Observable<any> {
     let addSubjectUrl = this.apiUrl + "/add";
