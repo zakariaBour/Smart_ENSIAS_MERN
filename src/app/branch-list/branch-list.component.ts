@@ -23,10 +23,6 @@ export class BranchListComponent implements OnInit {
   }
 
 
-
-
-
-
   ngOnInit(): void {
     this.branchService.getBranchs().subscribe((data) => {
       this.Branchs = data;
