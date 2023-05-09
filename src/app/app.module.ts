@@ -38,7 +38,12 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { AddBranchComponent } from './add-branch/add-branch.component';
 import { BranchListComponent } from './branch-list/branch-list.component';
 import { BranchService } from './services/branch.service';
+
 import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+
+import { SubjectListComponent } from './subject-list/subject-list.component';
+import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { SubjectService } from './services/subject.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -62,8 +67,9 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent },
   { path: 'addevents', component: EventsComponent },
   { path: 'branchs', component: BranchListComponent },
-  { path: 'branchs/add', component: AddBranchComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } }
-
+  { path: 'branchs/add', component: AddBranchComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'subjects', component: SubjectListComponent },
+  { path: 'subjects/add', component: AddSubjectComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
 ];
 
 @NgModule({
@@ -92,8 +98,11 @@ const routes: Routes = [
     SearchHolidaysPipe,
     AddBranchComponent,
     BranchListComponent,
+
     EditTeacherComponent,
-  ],
+
+    SubjectListComponent,
+    AddSubjectComponent ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -117,7 +126,8 @@ const routes: Routes = [
     TeacherService,
     HolidayService,
     AuthGuard,
-    BranchService
+    BranchService,
+    SubjectService
   ],
   bootstrap: [AppComponent]
 })
