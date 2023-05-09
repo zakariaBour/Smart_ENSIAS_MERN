@@ -23,7 +23,6 @@ import { EditStudentComponent } from './edit-student/edit-student.component';
 import { StudentAttendanceComponent } from './student-attendance/student-attendance.component';
 import { OverviewChartComponent } from './overview-chart/overview-chart.component';
 import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
-import { SearchFlterPipe } from './search-flter.pipe';
 import { TeacherAttendanceComponent } from './teacher-attendance/teacher-attendance.component';
 import { HolidayComponent } from './holiday/holiday.component';
 import { AddHolidayComponent } from './add-holiday/add-holiday.component';
@@ -32,7 +31,6 @@ import { EventsComponent } from './events/events.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HolidayService } from './services/holiday.service';
-import { SearchHolidaysPipe } from './search-holidays.pipe';
 import { AuthGuard } from './auth.guard';
 import { AddEventComponent } from './add-event/add-event.component';
 import { AddBranchComponent } from './add-branch/add-branch.component';
@@ -41,6 +39,9 @@ import { BranchService } from './services/branch.service';
 import { SubjectListComponent } from './subject-list/subject-list.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { SubjectService } from './services/subject.service';
+import { SearchFlterPipe } from './pipes/search-flter.pipe';
+import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
+import { SearchTeachersPipe } from './pipes/search-teachers.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -96,6 +97,7 @@ const routes: Routes = [
     BranchListComponent,
     SubjectListComponent,
     AddSubjectComponent,
+    SearchTeachersPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Holiday } from './models/holiday';
+import { Holiday } from '../models/holiday';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -9,8 +9,6 @@ export class SearchHolidaysPipe implements PipeTransform {
   transform(Holidays: Holiday[], searchValue: string): Holiday[] {
     if (!Holidays || !searchValue) { return Holidays; }
     return Holidays.filter(holiday =>
-      // student.firstname.toLowerCase().includes(searchValue.toLowerCase())
-      // ||
       holiday.title.toLowerCase().includes(searchValue.toLowerCase())
       ||
       holiday.type.toLowerCase().includes(searchValue.toLowerCase())
