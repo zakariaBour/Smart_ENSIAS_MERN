@@ -6,11 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exam.component.css']
 })
 export class ExamComponent implements OnInit{
-  role : string ="Student";
+  role : any;
   ngOnInit(): void {
     this.getCurrentUserRole();
   }
   getCurrentUserRole(){
-    //this.role = "admin";
+    this.role = localStorage.getItem('role');
   }
 }

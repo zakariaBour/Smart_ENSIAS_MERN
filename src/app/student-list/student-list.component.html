@@ -13,7 +13,7 @@
            </div>
            <div class="col-auto text-right float-right ml-auto">
               <a (click)="downloadStudents()" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-              <a *ngIf="role=='admin'" routerLink="/Addstudent" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+              <a *ngIf="role=='ADMIN'" routerLink="/Addstudent" class="btn btn-primary"><i class="fas fa-plus"></i></a>
            </div>
         </div>
      </div>
@@ -31,7 +31,7 @@
       <th>Class</th>
       <th>Mobile Number</th>
       <th>Email</th>
-      <th *ngIf="role=='admin'" class="text-right">Action</th>
+      <th *ngIf="role=='ADMIN'" class="text-right">Action</th>
       </tr>
       </thead>
       <tbody>
@@ -47,7 +47,7 @@
          <td>0</td>
          <td>{{student.phone}}</td>
          <td>{{student.email}}</td>
-         <td class="text-right" *ngIf="role=='admin'">
+         <td class="text-right" *ngIf="role=='ADMIN'">
           <div class="actions">
           <a [routerLink]="['/editStudent',student.cne]"  class="btn btn-sm bg-success-light mr-2">
           <i class="fas fa-pen"></i>
