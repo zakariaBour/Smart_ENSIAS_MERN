@@ -45,6 +45,7 @@ import { SubjectService } from './services/subject.service';
 import { SearchFlterPipe } from './pipes/search-flter.pipe';
 import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
 import { SearchTeachersPipe } from './pipes/search-teachers.pipe';
+import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -107,6 +108,7 @@ const routes: Routes = [
 
     AddSubjectComponent,
     SearchTeachersPipe,
+    EditTeacherComponent,
   ],
   imports: [
     BrowserModule,

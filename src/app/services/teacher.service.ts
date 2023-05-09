@@ -32,7 +32,7 @@ export class TeacherService {
 
   updateTeacher(teacher: any,id : AnalyserOptions): Observable<any> {
     let addTeacherUrl = this.apiUrl + "/api/v1/teacher/"+id;
-    return this.http.patch<any>(addTeacherUrl, teacher, this.httpOptions).pipe(
+  return this.http.patch<any>(addTeacherUrl, teacher, this.httpOptions).pipe(
       map(response => {
         console.log(response)
       })
