@@ -24,7 +24,7 @@
                    <li *ngIf="showOptions[0]" style="padding-left: 10%;"
                    [ngClass]="{'active': currentPath=='Addstudent'}"
                    >
-                   <a *ngIf="role=='ADMIN'" routerLink="/Addstudent">Student Add</a></li>
+                   <a *ngIf="role=='STUDENT'" routerLink="/Addstudent">Student Add</a></li>
                    <li>
 
                   <a (click)="change(1)" style="cursor: pointer;">
@@ -43,8 +43,8 @@
                                  <i class="fas fa-book-open"></i> <span> Subjects </span> <span class="menu-arrow"></span>
                         </a>
                 </li>
-                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/teachers">Subjects List</a></li>
-                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/addTeacher" *ngIf="role=='ADMIN'">Subjects Add</a></li>
+                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/subjects">Subjects List</a></li>
+                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/subjects/add">Subjects Add</a></li>
          <li style="cursor: pointer;">
           <a (click)="change(3)">
                    <i class="fas fa-book-open"></i> <span> Branches </span> <span class="menu-arrow"></span>

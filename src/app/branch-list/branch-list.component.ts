@@ -15,10 +15,16 @@ export class BranchListComponent implements OnInit {
   Branchs: any;
   role: any;
 
-  constructor(private branchService: BranchService
-    , private toastr: ToastrService, public searchService: SearchService) {
-    console.log(this.branchService.getBranchs().subscribe((data) => { console.log(data) }))
+  constructor(private branchService: BranchService, private toastr: ToastrService, public searchService: SearchService) {
+    this.branchService.getBranchs().subscribe((data: any) => {
+      const ids = data.map((branch: any) => branch.id);
+      console.log(ids);
+    });
   }
+
+
+
+
 
 
   ngOnInit(): void {
