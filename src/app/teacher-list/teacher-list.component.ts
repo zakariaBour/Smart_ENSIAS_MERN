@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teacher-list.component.css']
 })
 export class TeacherListComponent implements OnInit {
-  role : string = "admin";
+  role : string | any;
   teachers = [
     {
       "CIN": "ZT277932",
@@ -67,6 +67,6 @@ export class TeacherListComponent implements OnInit {
   }
 
   getCurrentUserRole(){
-    this.role = "Student";
+    this.role = localStorage.getItem('role');
   }
 }
