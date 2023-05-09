@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SidebarComponent implements OnInit{
   showOptions: boolean[] = new Array(100).fill(false);
   currentPath: any;
-  role : string = "student";
+  role : string|any;
    constructor(private route: ActivatedRoute){
     
    }
@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit{
   }
   getCurrentUserRole(){
     //le code a changer après
-   this.role = "admin";
+   this.role = localStorage.getItem('role');
   }
 }
 

@@ -14,7 +14,7 @@
     </div>
     <div class="col-auto text-right float-right ml-auto">
     <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-    <a *ngIf="role=='admin'" href="add-teacher.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+    <a *ngIf="role=='ADMIN'" routerLink="/addTeacher" class="btn btn-primary"><i class="fas fa-plus"></i></a>
     </div>
     </div>
     </div>
@@ -35,7 +35,7 @@
     <th>Section</th>
     <th>Mobile Number</th>
     <th>Email</th>
-    <th *ngIf="role=='admin'" class="text-right">Action</th>
+    <th *ngIf="role=='ADMIN'" class="text-right">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -54,7 +54,7 @@
        <td>{{teacher.Section}}</td>
        <td>{{teacher['Mobile Number']}}</td>
        <td>{{teacher.Email}}</td> 
-       <td *ngIf="role=='admin'" class="text-right">
+       <td *ngIf="role=='ADMIN'" class="text-right">
         <div class="actions">
         <a href="edit-teacher.html" class="btn btn-sm bg-success-light mr-2">
         <i class="fas fa-pen"></i>

@@ -24,7 +24,7 @@
                    <li *ngIf="showOptions[0]" style="padding-left: 10%;"
                    [ngClass]="{'active': currentPath=='Addstudent'}"
                    >
-                   <a *ngIf="role=='admin'" routerLink="/Addstudent">Student Add</a></li>
+                   <a *ngIf="role=='ADMIN'" routerLink="/Addstudent">Student Add</a></li>
                    <li>
 
                   <a (click)="change(1)" style="cursor: pointer;">
@@ -37,21 +37,21 @@
                   </li>
                   <li *ngIf="showOptions[1]" style="padding-left: 10%;"
                   [ngClass]="{'active': currentPath=='addTeacher'}"
-                  ><a routerLink="/addTeacher" *ngIf="role=='admin'">Teachers Add</a></li>
+                  ><a routerLink="/addTeacher" *ngIf="role=='ADMIN'">Teachers Add</a></li>
             <li style="cursor: pointer;">
                         <a (click)="change(2)">
                                  <i class="fas fa-book-open"></i> <span> Subjects </span> <span class="menu-arrow"></span>
                         </a>
                 </li>
                     <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/teachers">Subjects List</a></li>
-                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/addTeacher" *ngIf="role=='admin'">Subjects Add</a></li>
+                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/addTeacher" *ngIf="role=='ADMIN'">Subjects Add</a></li>
          <li style="cursor: pointer;">
           <a (click)="change(3)">
                    <i class="fas fa-book-open"></i> <span> Branches </span> <span class="menu-arrow"></span>
           </a>
   </li>
       <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/branchs">Branches List</a></li>
-      <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/branchs/add" *ngIf="role=='admin'">Branches Add</a></li>
+      <li *ngIf="showOptions[3]" style="padding-left: 10%;"><a routerLink="/branchs/add" *ngIf="role=='ADMIN'">Branches Add</a></li>
                  <li style="cursor: pointer;">
                   <a  (click)="change(4)">
                      <i class="fas fa-calendar-alt"></i> <span> Attendance </span> <span class="menu-arrow"></span>

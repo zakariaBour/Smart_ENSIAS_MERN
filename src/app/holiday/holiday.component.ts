@@ -13,6 +13,7 @@ import { Holiday } from '../models/holiday';
 })
 export class HolidayComponent implements OnInit {
   holidays: any;
+  role : any;
   constructor(private holidayService: HolidayService
     , private toastr: ToastrService, public searchService: SearchService) {
     console.log(this.holidayService.getHolidays().subscribe((data) => { console.log(data) }))
@@ -21,8 +22,14 @@ export class HolidayComponent implements OnInit {
   ngOnInit(): void {
     this.holidayService.getHolidays().subscribe((data) => {
       this.holidays = data;
-    })
+    });
+    this.getCurrentUserRole();
   }
+
+
+  getCurrentUserRole(){
+   this.role = localStorage.getItem('role');
+   }
   getHolidays(): void {
     this.holidayService.getHolidays().subscribe(holidays => {
       this.holidays = holidays;

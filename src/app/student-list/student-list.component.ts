@@ -12,7 +12,9 @@ import { SearchService } from '../search.service';
 })
 export class StudentListComponent implements OnInit {
   students: any;
-  role : string = "Student";
+
+  role: string | any;
+
   constructor(private studentsServices: StudentService
     , private toastr: ToastrService, public searchService: SearchService) {
     this.studentsServices.getStudents().subscribe((data) => { console.log(data) });
@@ -28,7 +30,7 @@ export class StudentListComponent implements OnInit {
   
   getCurrentUserRole(){
     //le code a ajouter après
-    this.role = "Student";
+    this.role = localStorage.getItem('role');
   }
 
   deleteStudent(cne: string) {
