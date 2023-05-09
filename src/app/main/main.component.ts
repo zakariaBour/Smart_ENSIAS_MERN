@@ -1,12 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexResponsive, ApexXAxis, ApexLegend, ApexFill } from 'ng-apexcharts';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
+  providers : [UserService]
 })
 export class MainComponent {
+
+  user: any;
+
+  constructor(private userService : UserService) { }
+
+  ngOnInit() {
+    const userId = localStorage.getItem('id');
+    console.log(userId);
+    this.userService.getUserById(userId).subscribe((user) => {
+      this.user = user;
+    });
+  }
   // chart 1
   chartSeries: ApexAxisChartSeries = [
     {
@@ -81,9 +95,5 @@ export class MainComponent {
 
 
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
+ 
 }
