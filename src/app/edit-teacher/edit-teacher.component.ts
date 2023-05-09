@@ -119,8 +119,8 @@ export class EditTeacherComponent {
   get email() {
     return this.EditTeacherForm.get('email');
   }
-  updateTeacher(teacher: Teacher) {
-    this.teacherService.updateTeacher(teacher).subscribe((teachers: any) => {
+  updateTeacher(teacher: Teacher,id : any) {
+    this.teacherService.updateTeacher(teacher,id).subscribe((teachers: any) => {
       this.toastr.success('Teacher updated successfully');
     }, (error: any) => {
       this.toastr.error('error');
@@ -161,6 +161,6 @@ export class EditTeacherComponent {
       date_of_birth: this.formData?.dob,
       joining_date : this.formData?.jod
     }
-    this.updateTeacher(teacher);
+    this.updateTeacher(teacher,this.current_id);
   }
 }
