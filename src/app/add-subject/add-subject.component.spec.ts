@@ -32,4 +32,30 @@ describe('AddSubjectComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should validate form fields', () => {
+    component.addSubjectForm.controls['code'].setValue('');
+    component.addSubjectForm.controls['name'].setValue('Subject');
+    component.addSubjectForm.controls['description'].setValue('Description');
+    component.addSubjectForm.controls['filiere'].setValue('Filiere');
+  
+    expect(component.addSubjectForm.controls['code'].valid).toBeFalsy();
+    expect(component.addSubjectForm.controls['name'].valid).toBeTruthy();
+    expect(component.addSubjectForm.controls['description'].valid).toBeTruthy();
+    expect(component.addSubjectForm.controls['filiere'].valid).toBeTruthy();
+  });
+
+  it('should submit the form and add a subject', () => {
+    spyOn(component, 'addSubject').and.callThrough();
+  
+    component.addSubjectForm.controls['code'].setValue('123');
+    component.addSubjectForm.controls['name'].setValue('Subject');
+    component.addSubjectForm.controls['description'].setValue('Description');
+    component.addSubjectForm.controls['filiere'].setValue('Filiere');
+  
+    component.onSubmit();
+  
+    expect(component.addSubject).toHaveBeenCalled();
+  });
+    
 });
