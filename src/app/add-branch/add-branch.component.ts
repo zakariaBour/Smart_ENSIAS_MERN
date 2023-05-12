@@ -10,7 +10,6 @@ import { BranchService } from '../services/branch.service';
   providers: [BranchService]
 })
 
-
 export class AddBranchComponent {
   formData: any;
   myBranch: Branch = {
@@ -46,14 +45,13 @@ export class AddBranchComponent {
     return this.addBranchForm.get('description');
   }
 
-
   addHoliday(branch: Branch) {
     console.log(branch);
     this.bracnhService.addBranch(branch).subscribe(branchs => {
       this.toastr.success('Branch added successfully');
     }, error => {
       this.toastr.error('error');
-      console.log(error);
+      
     });
   }
   onSubmit(): any {
@@ -64,10 +62,6 @@ export class AddBranchComponent {
       name: this.formData?.name,
       description: this.formData?.description,
     }
-
-
-    console.log(branch);
     let x = this.addHoliday(branch);
-    console.log(x);
   }
 }

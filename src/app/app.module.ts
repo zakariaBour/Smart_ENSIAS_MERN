@@ -43,8 +43,8 @@ import { SearchFlterPipe } from './pipes/search-flter.pipe';
 import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
 import { SearchTeachersPipe } from './pipes/search-teachers.pipe';
 import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+import { RouterTestingModule } from "@angular/router/testing";
 import { MyProfileComponent } from './my-profile/my-profile.component';
-
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -118,6 +118,7 @@ const routes: Routes = [
     NgApexchartsModule,
     FormsModule,
     BrowserModule,
+    RouterTestingModule,
     AppRoutingModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
