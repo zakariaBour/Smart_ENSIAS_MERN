@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./edit-student.component.css']
 })
 
-export class EditStudentComponent implements OnInit{
+export class EditStudentComponent implements OnInit {
   formData: any;
   myStudent: Student = {
     cne: '',
@@ -31,10 +31,10 @@ export class EditStudentComponent implements OnInit{
 
   // constructor(private formBuilder: FormBuilder, private studentService: StudentService) { }
 
-  constructor(private studentService : StudentService,
+  constructor(private studentService: StudentService,
     private toastr: ToastrService, private route: ActivatedRoute
-    ,private fb: FormBuilder) {
-      
+    , private fb: FormBuilder) {
+
     this.addStudentForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.required,
@@ -69,11 +69,11 @@ export class EditStudentComponent implements OnInit{
     });
     this.getStudentByCne();
   }
-  currentStudent : any;
+  currentStudent: any;
   current_cne: any;
-  ngOnInit(): void { 
+  ngOnInit(): void {
   }
- 
+
   get firstname() {
     return this.addStudentForm.get('firstname');
   }
@@ -102,44 +102,44 @@ export class EditStudentComponent implements OnInit{
   get email() {
     return this.addStudentForm.get('email');
   }
-  getStudentByCne(){
+  getStudentByCne() {
     this.current_cne = this.route.snapshot.paramMap.get('cne');
-    this.studentService.findStudentByCne(this.current_cne).subscribe(student=>{
+    this.studentService.findStudentByCne(this.current_cne).subscribe(student => {
       this.currentStudent = student;
       this.addStudentForm = this.fb.group({
         firstname: this.currentStudent.firstname,
-        lastname : this.currentStudent.lastname,
-        gender : this.currentStudent.genre,
-        dob : this.currentStudent.date_of_birth,
-        mobileNumber : this.currentStudent.phone,
-        codeApogee : this.currentStudent.cne,
-        PasswordAccount : this.currentStudent.password,
-        email : this.currentStudent.email
+        lastname: this.currentStudent.lastname,
+        gender: this.currentStudent.genre,
+        dob: this.currentStudent.date_of_birth,
+        mobileNumber: this.currentStudent.phone,
+        codeApogee: this.currentStudent.cne,
+        PasswordAccount: this.currentStudent.password,
+        email: this.currentStudent.email
       });
     });
   }
-  addStudent(student : Student){
-      this.studentService.addStudent(student).subscribe(students => {
-        this.toastr.success('Student added successfully');
-      },error => {
-        this.toastr.error('error');
-      });
+  addStudent(student: Student) {
+    this.studentService.addStudent(student).subscribe(students => {
+      this.toastr.success('Student added successfully');
+    }, error => {
+      this.toastr.error('error');
+    });
   }
   onSubmit(): any {
     this.formData = this.addStudentForm.value;
-    let student : Student;
+    let student: Student;
     student = {
-      cne : this.formData?.codeApogee,
-      firstname : this.formData?.firstname,
-      lastname : this.formData?.lastname,
-      phone : this.formData?.mobileNumber,
-      email : this.formData?.email,
-      gender : this.formData?.gender,
-      password : this.formData?.PasswordAccount
+      cne: this.formData?.codeApogee,
+      firstname: this.formData?.firstname,
+      lastname: this.formData?.lastname,
+      phone: this.formData?.mobileNumber,
+      email: this.formData?.email,
+      gender: this.formData?.gender,
+      password: this.formData?.PasswordAccount
     }
     //addStudent();
     this.addStudent(student);
   }
-  
+
 }
 

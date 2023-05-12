@@ -48,7 +48,7 @@
     <td>{{subject.name}}</td>
     <td>{{subject.description}}</td>
     <td><ul *ngFor="let filiere of subject.filiere" [style.color]="colors[(Subjects.indexOf(subject) + filiere.id) % colors.length]"><li>{{filiere.name}}</li></ul></td>
-    <td class="text-right">
+    <td *ngIf="role=='ADMIN'"class="text-right">
           <div class="actions">
           <a class="btn btn-sm bg-success-light mr-2">
           <i class="fas fa-pen"></i>
