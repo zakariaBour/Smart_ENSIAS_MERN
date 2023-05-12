@@ -51,7 +51,7 @@ export class AddBranchComponent {
       this.toastr.success('Branch added successfully');
     }, error => {
       this.toastr.error('error');
-      console.log(error);
+      
     });
   }
   onSubmit(): any {
@@ -62,10 +62,6 @@ export class AddBranchComponent {
       name: this.formData?.name,
       description: this.formData?.description,
     }
-
-
-    console.log(branch);
     let x = this.addHoliday(branch);
-    console.log(x);
   }
 }
