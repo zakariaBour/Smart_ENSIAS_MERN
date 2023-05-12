@@ -10,7 +10,6 @@ import { BranchService } from '../services/branch.service';
   providers: [BranchService]
 })
 
-
 export class AddBranchComponent {
   formData: any;
   myBranch: Branch = {
@@ -45,7 +44,6 @@ export class AddBranchComponent {
   get description() {
     return this.addBranchForm.get('description');
   }
-
 
   addHoliday(branch: Branch) {
     console.log(branch);
