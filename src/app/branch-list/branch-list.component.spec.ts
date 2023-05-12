@@ -32,4 +32,14 @@ describe('BranchListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should get the current user role', () => {
+    const mockRole = 'admin';
+    spyOn(localStorage, 'getItem').and.returnValue(mockRole);
+  
+    component.getCurrentUserRole();
+  
+    expect(localStorage.getItem).toHaveBeenCalledWith('role');
+    expect(component.role).toEqual(mockRole);
+  });
+    
 });
