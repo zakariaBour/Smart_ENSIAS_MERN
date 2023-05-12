@@ -62,7 +62,9 @@ export class AddStudentComponent {
         Validators.required,
         Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
       ])
+      
     });
+    
   }
   matchPassword(control: AbstractControl): { [key: string]: any } | null {
     const PasswordAccount = control.parent?.get('PasswordAccount');
