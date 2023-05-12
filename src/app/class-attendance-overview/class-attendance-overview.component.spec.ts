@@ -46,4 +46,19 @@ describe('ClassAttendanceOverviewComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have chart series data', () => {
+    expect(component.chartSeries).toBeDefined();
+    expect(component.chartSeries.length).toBeGreaterThan(0);
+  });
+
+  it('should have chart details configured', () => {
+    expect(component.chartDetails).toBeDefined();
+    expect(component.chartDetails.type).toBe('bar');
+    expect(component.chartDetails.height).toBe(350);
+  });
+
 });
