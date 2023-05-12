@@ -43,6 +43,7 @@ import { SearchFlterPipe } from './pipes/search-flter.pipe';
 import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
 import { SearchTeachersPipe } from './pipes/search-teachers.pipe';
 import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 
 const routes: Routes = [
@@ -70,6 +71,7 @@ const routes: Routes = [
   { path: 'branchs/add', component: AddBranchComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'subjects', component: SubjectListComponent },
   { path: 'subjects/add', component: AddSubjectComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path : 'profile',component : MyProfileComponent}
 ];
 
 @NgModule({
@@ -103,6 +105,7 @@ const routes: Routes = [
     AddSubjectComponent,
     SearchTeachersPipe,
     EditTeacherComponent,
+    MyProfileComponent,
   ],
   imports: [
     BrowserModule,
