@@ -32,4 +32,20 @@ describe('AddTeacherComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should validate form fields on submit', () => {
+    component.addTeacherForm.setValue({
+      firstname: 'John',
+      lastname: 'Doe',
+      gender: 'Male',
+      dob: '1990-01-01',
+      jod: '2021-01-01',
+      mobileNumber: '1234567',
+      matricule: '12345',
+      PasswordAccount: 'password',
+      confirmPassword: 'password',
+      email: 'john.doe@example.com'
+    });
+    expect(component.addTeacherForm.valid).toBeTruthy();
+  });
+  
 });
