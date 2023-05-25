@@ -10,14 +10,7 @@ const httpOptions = {
     }
   )
 };
-const httpOptions2 = {
-  headers: new HttpHeaders(
-    {
-      'Content-Type': 'application/json',
-      'Authorization' :  'Bearer '+localStorage.getItem('accessToken'),
-    }
-  )
-};
+
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +29,7 @@ export class StudentService {
   }
   addStudent(student: any): Observable<any> {
     let addStudentUrl = this.apiUrl + "/api/v1/auth/register/student";
-    return this.http.post<any>(addStudentUrl, student, httpOptions2).pipe(
+    return this.http.post<any>(addStudentUrl, student, httpOptions).pipe(
       map(response => {
       
       })
