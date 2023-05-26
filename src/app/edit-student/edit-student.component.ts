@@ -106,24 +106,26 @@ export class EditStudentComponent implements OnInit {
     this.current_cne = this.route.snapshot.paramMap.get('cne');
     this.studentService.findStudentByCne(this.current_cne).subscribe(student => {
       this.currentStudent = student;
+      console.log(this.currentStudent);
       this.addStudentForm = this.fb.group({
-        firstname: this.currentStudent.firstname,
-        lastname: this.currentStudent.lastname,
-        gender: this.currentStudent.genre,
-        dob: this.currentStudent.date_of_birth,
-        mobileNumber: this.currentStudent.phone,
-        codeApogee: this.currentStudent.cne,
-        PasswordAccount: this.currentStudent.password,
-        email: this.currentStudent.email
+        firstname: this.currentStudent.first_name,
+        lastname : this.currentStudent.last_name,
+        gender : this.currentStudent.genre,
+        dob : this.currentStudent.date_of_birth,
+        mobileNumber : this.currentStudent.phone,
+        codeApogee : this.currentStudent.cne,
+        PasswordAccount : "",
+        email : this.currentStudent.email
       });
     });
   }
-  addStudent(student: Student) {
-    this.studentService.addStudent(student).subscribe(students => {
-      this.toastr.success('Student added successfully');
-    }, error => {
-      this.toastr.error('error');
-    });
+  addStudent(student : Student){
+      this.studentService.addStudent(student,1).subscribe(students => {
+        this.toastr.success('Student added successfully');
+      },error => {
+        this.toastr.error('error');
+      });
+
   }
   onSubmit(): any {
     this.formData = this.addStudentForm.value;

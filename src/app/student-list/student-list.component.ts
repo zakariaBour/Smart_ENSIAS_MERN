@@ -54,7 +54,6 @@ export class StudentListComponent implements OnInit {
       const data = this.generateCsvData(this.students);
       const blob = new Blob([data], { type: 'text/csv;charset=utf-8' });
       saveAs(blob, 'students.csv');
-
     });
   }
 
