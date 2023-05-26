@@ -64,9 +64,9 @@
                         <select class="form-control"
                         [ngClass]="{'is-invalid' : gender?.invalid && gender?.touched}"
                          formControlName="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Others</option>
+                        <option>MALE</option>
+                        <option>FEMALE</option>
+                        <option>OTHERS</option>
                         </select>
                         <div class="alert alert-warning mt-1" *ngIf="gender?.invalid && gender?.touched">
                             <div *ngIf="gender?.errors?.['required']">
