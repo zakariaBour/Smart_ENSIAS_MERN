@@ -3,14 +3,18 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';
 import { ToastrService } from 'ngx-toastr';
+import { FiliereService } from '../services/filiere.service';
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
   styleUrls: ['./add-student.component.css'],
   providers: [StudentService]
 })
-export class AddStudentComponent {
+export class AddStudentComponent implements OnInit {
   formData: any;
+  filieres: any[] = [];
+  selectedFiliereId: number  = 1;
+
   myStudent: Student = {
     cne: '',
     firstname: '',
@@ -24,8 +28,11 @@ export class AddStudentComponent {
 
   students: Student[] = [];
   addStudentForm: FormGroup;
+  
 
-  constructor(private studentService: StudentService, private toastr: ToastrService) {
+
+
+  constructor(private filiereService: FiliereService,private studentService: StudentService, private toastr: ToastrService) {
     this.addStudentForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.required,
@@ -66,6 +73,25 @@ export class AddStudentComponent {
     });
     
   }
+  
+
+  ngOnInit() {
+    this.loadFilieres();
+  }
+
+  loadFilieres() {
+    this.filiereService.getFilieres().subscribe(
+      (filieres: any[]) => {
+        this.filieres = filieres;
+        console.log('hi');
+        console.log(filieres);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   matchPassword(control: AbstractControl): { [key: string]: any } | null {
     const PasswordAccount = control.parent?.get('PasswordAccount');
     const confirmPassword = control;
@@ -109,15 +135,21 @@ export class AddStudentComponent {
   }
   addStudent(student: Student) {
   
-    this.studentService.addStudent(student).subscribe(students => {
+    this.studentService.addStudent(student,this.selectedFiliereId).subscribe(students => {
       this.toastr.success('Student added successfully');
     }, error => {
       this.toastr.error('error');
      
     });
   }
+
+
+  onFiliereChange(event: any) {
+    this.selectedFiliereId = event.target.value;
+  }
   onSubmit(): any {
     this.formData = this.addStudentForm.value;
+    
     let student: Student;
     student = {
       cne: this.formData?.codeApogee,
@@ -130,5 +162,6 @@ export class AddStudentComponent {
       date_of_birth: this.formData?.dob
     }
     let x = this.addStudent(student);
+
   }
 }

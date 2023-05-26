@@ -120,7 +120,7 @@ export class EditStudentComponent implements OnInit{
     });
   }
   addStudent(student : Student){
-      this.studentService.addStudent(student).subscribe(students => {
+      this.studentService.addStudent(student,1).subscribe(students => {
         this.toastr.success('Student added successfully');
       },error => {
         this.toastr.error('error');
