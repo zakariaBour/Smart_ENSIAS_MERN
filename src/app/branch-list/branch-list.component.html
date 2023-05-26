@@ -46,7 +46,7 @@
     </td>
     <td>{{branch.name}}</td>
     <td>{{branch.description}}</td>
-    <td class="text-right">
+    <td *ngIf="role=='ADMIN'"class="text-right">
           <div class="actions">
           <a class="btn btn-sm bg-success-light mr-2">
           <i class="fas fa-pen"></i>
